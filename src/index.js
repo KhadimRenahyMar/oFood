@@ -1,7 +1,13 @@
 require('dotenv').config()
 const express = require('express');
 const app = express();
-require('./database/client_mongo')
+
+//on utilise plus mongo, je le laisse comme exemple
+//require('./database/client_mongo')
+
+require('./database/client_pg')
+
+
 
 const routing = require('./routes')
 
