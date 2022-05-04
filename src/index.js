@@ -6,19 +6,20 @@ const app = express();
 //require('./database/client_mongo')
 
 require('./database/client_pg')
+const router = require('./routes');
 
+// const cookieParser = require('cookie-parser');
+// app.use(cookieParser());
+//require('./config/jwt.config');
 
-
-const routing = require('./routes')
 
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
-app.use(routing)
 
 
-app.all('*', (req, res) => {
-  res.status(404).end();
-})
+app.use(router)
+
+
+
 
 
 if (process.env.DOCKER_ENV === 'true'){

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/index.js",
+    "dev_debug": "DEBUG=App,Game_Controller,User_Controller,Game_DataMapper,User_DataMapper,DB_Client,Error_Handler,Router_Wrapper,Validator, nodemon ./src/index.js",
     "prod": "pm2-runtime pm2.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,11 +13,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
+    "express-swagger-generator": "^1.1.17",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
     "mongoose": "^6.3.1",
     "nodemon": "^2.0.6",
     "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "jest": "^28.0.3"
   }
 }

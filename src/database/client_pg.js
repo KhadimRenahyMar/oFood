@@ -59,9 +59,11 @@ if (process.env.NODE_ENV === 'heroku'){
                 console.log(err);
             })
 
+
+            
+    module.exports = client;
+            
 }
-
-
+        
 
         
- //module.exports = client;

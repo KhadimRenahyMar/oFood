@@ -1,0 +1,31 @@
+@protocol=http://
+@host=localhost
+@port=:3001
+@prefix=api/
+#@baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
+@baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
+
+### Create a new user in db
+POST {{baseUrl}}/users/signup
+content-type: application/json
+
+{
+  "email": "Nicolas",
+  "password": "1234"
+}
+
+### Log in admin user
+POST {{baseUrl}}/users/login
+content-type: application/json
+
+{
+  "email": "Nicolas",
+  "password": "1234"
+}
+
+### Log out user
+GET {{baseUrl}}/users/logout
+
+### Get users list
+GET {{baseUrl}}/users/
+
