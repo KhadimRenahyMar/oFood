@@ -10,7 +10,6 @@ const usersController = {
       debug(user)
       req.login(user);
       res.status(201).json(user);
-
   },
 
   /**

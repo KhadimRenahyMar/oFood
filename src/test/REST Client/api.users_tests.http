@@ -1,7 +1,7 @@
 @protocol=http://
 @host=localhost
 @port=:3001
-@prefix=api/
+@prefix=/api
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Create a new user in db
