@@ -29,3 +29,6 @@ GET {{baseUrl}}/users/logout
 ### Get users list
 GET {{baseUrl}}/users/
 
+### Get API
+GET {{baseUrl}}/
+

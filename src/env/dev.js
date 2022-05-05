@@ -10,6 +10,7 @@ module.exports ={
 
     MONGO_URL:`mongodb://db`,
 
-    SESSION_SECRET:`1234`
+    JWT_SECRET:`1234`
+
 
 }

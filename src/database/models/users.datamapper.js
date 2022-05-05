@@ -27,7 +27,7 @@ const usersDataMapper = {
   
   },
   
-  async getUser(user) {
+  async findUserPerEmail(user) {
     const query = {
       text : `SELECT email, is_admin_role, password FROM "users"
               WHERE email = $1`,
@@ -44,8 +44,28 @@ const usersDataMapper = {
     return results.rows[0];
   },
 
-  
- 
+  findUserPerId(id){
+
+
+
+  },
+
+  /**
+   * Return a list containing all registered users
+   * @returns {ARRAY} of pseudos String
+   * @throws {APIError} if the table user is empty
+   */
+   async GetUsers(){
+    const query = `SELECT * FROM "users";`;
+    const results = await client.query(query);
+
+    debug(results.rows)
+    if(!results.rowCount){
+      throw new APIError ("No user in BDD.", 404);
+    };
+    return results.rows;
+  },
+
 };
 
 module.exports = usersDataMapper;

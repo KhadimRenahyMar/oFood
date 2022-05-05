@@ -1,13 +1,24 @@
 const userRoutes = require('./user.routes');
-const router = require('express').Router();
-
+const { ensureAuthenticated } = require('../config/security.config');
 
 
 
 // Adding subrouters
-router
+userRoutes
 .use('/api/users', userRoutes);
 
 
+userRoutes.get('api/protected', ensureAuthenticated, (req, res) => {
+    res.status(200).json({user, route :'protected' });
+  })
+  
 
-module.exports = router;
+userRoutes.get('/api',  (req, res) => {
+
+    res.status(200).json('API OK');
+    //res.status(200).json({ user: req.user });
+});
+
+
+
+module.exports = userRoutes;

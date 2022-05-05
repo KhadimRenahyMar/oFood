@@ -8,7 +8,8 @@ module.exports ={
 
     MONGO_URL:`mongodb://${ process.env.MONGO_USERNAME }:${ process.env.MONGO_PWD }@db`,
     
-    SESSION_SECRET:`1234`
+    JWT_SECRET:`1234`
+
 }
 
 

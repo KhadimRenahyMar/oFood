@@ -1,23 +1,23 @@
 require('dotenv').config()
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 
-//on utilise plus mongo, je le laisse comme exemple
-//require('./database/client_mongo')
-
+exports.app = app;
 require('./database/client_pg')
-const router = require('./routes');
 
-// const cookieParser = require('cookie-parser');
-// app.use(cookieParser());
-//require('./config/jwt.config');
+
+app.use(cookieParser());
+
+//a placer absolument après cookieParser
+require('./config/jwt.config');
 
 
 app.use(express.json())
 
 
+const router = require('./routes');
 app.use(router)
-
 
 
 

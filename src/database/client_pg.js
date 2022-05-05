@@ -1,8 +1,6 @@
 const { Client } = require("pg");
 
 const env = require(`../env/${process.env.NODE_ENV}`)
-
-
 const client = new Client(`postgresql://${env.DB_USER}:${env.DB_PASS}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}`);
 
 
@@ -20,7 +18,6 @@ if (process.env.NODE_ENV === 'dev'){
 }
 
 
-
 if (process.env.NODE_ENV === 'prod'){
 
     client.connect()
@@ -33,7 +30,6 @@ if (process.env.NODE_ENV === 'prod'){
             })
 
 }
-
 
 
 if (process.env.NODE_ENV === 'heroku'){
