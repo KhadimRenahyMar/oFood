@@ -39,7 +39,7 @@ const usersController = {
   },
   
   async getUsers(_,res) {
-    const results = await usersDataMapper.GetUsersList();
+    const results = await usersDataMapper.GetUsers();
     res.status(200).json(results);
   },
 
