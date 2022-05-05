@@ -1,6 +1,0 @@
-
-
-21:51:06,/signup,error: relation "public.users" does not exist
-21:51:49,/signup,ReferenceError: result is not defined
-21:52:54,/signup,error: duplicate key value violates unique constraint "users_password_key"
-21:54:41,/signup,error: duplicate key value violates unique constraint "users_email_key"

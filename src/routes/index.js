@@ -1,24 +1,16 @@
+const debug = require('debug')('Index_Router');
 const userRoutes = require('./user.routes');
-const { ensureAuthenticated } = require('../middlewares/security');
-
-
+const is_auth = require('../middlewares/authenticated')
 
 // Adding subrouters
 userRoutes
 .use('/api/users', userRoutes);
 
-
-userRoutes.get('api/protected', ensureAuthenticated, (req, res) => {
-    res.status(200).json({user, route :'protected' });
-  })
-  
-
-userRoutes.get('/api',  (req, res) => {
+userRoutes.get('/api',is_auth,  (req, res) => {
 
     res.status(200).json({message :'API run'});
-    //res.status(200).json({ user: req.user });
-});
 
+});
 
 
 module.exports = userRoutes;

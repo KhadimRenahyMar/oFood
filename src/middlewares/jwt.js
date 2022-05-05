@@ -13,15 +13,16 @@ const { app } = require('../index');
 // à adapter 
 
 // Fonction de création d'un Token JWT dans lequel on stocke l'id en BDD de notre user 
-const createJwtToken = ({ user = null, id = null }) => {
+const createJwtToken = ({ user = null}) => {
 
   //Methode synchrone, si pas de passage de méthode de callback
   const jwtToken = jwt.sign({ 
-    sub: id || user.id,
+    sub: user.id.toString(),
     exp: Math.floor(Date.now() / 1000) + 5 
   }, secret);
   return jwtToken;
 }
+
 
 // Assignation de la méthode de création d'un token sur une clé createJwtToken 
 exports.createJwtToken = createJwtToken;
@@ -30,30 +31,41 @@ exports.createJwtToken = createJwtToken;
 // l'objectif de ce middleware c'est d'ajouter le user sur l'objet req et le rendre dispo ailleurs dans le backend
 const extractUserFromToken = async (req, res, next) => {
 
+   debug('req avt extraction jwt',req.cookies)
+
   //Ici on regarde à la réception d'une requête entrante si il y a un token dans son cookie 
   const token = req.cookies.jwt;
 
-  //si pas de Token, l'utilisateur n'est pas connecté
+  debug('clé jwt du token',token)
+  //si pas de Token, l'utilisateur n'est considéré comme pas connecté
   if (token) {
+
     try {
 
       //verif et décodage (recup du contenu du payload) -> Methode synchrone, si pas de passage de méthode de callback
-      let decodedToken = jwt.verify(token, secret, { ignoreExpiration: true });
-      decodedToken = checkExpirationToken(decodedToken, res);
 
-      const user = await usersDataMapper.findUserPerId(decodedToken.sub);
+      debug('debut décodage')
+     let decodedToken = jwt.verify(token, secret, { ignoreExpiration: true });
+    //decodedToken = checkExpirationToken(decodedToken, res);
+
+     debug('Debug decodedToken : ',decodedToken)
+     debug('Debug decodedToken : ',decodedToken.sub)
+
+
+      const user = await usersDataMapper.findUserPerId(parseInt(decodedToken.sub,10));
 
       //Ici on doit récupérer notre objet avec le contenu du payload (),
       // ici un objet avec sub et id du user -> infos de la création token avec sign
-      debug(user)
+      debug('Debug user récupéré en bdd après recup id par décodage token ',user)
 
       if (user) {
 
 
         //ici on place le user sur une clé user de l'objet req, pour le rendre dispo sur les middleware suivant
         req.user = user;
-        next();
 
+        debug(' Debug req.user ',req.user)
+        next();
 
       } else {
 
@@ -70,6 +82,8 @@ const extractUserFromToken = async (req, res, next) => {
       res.status(500).json('erreur fonct verif jwt');
     }
   } else {
+
+     debug('On sort direct',token)
 
     //Ici l'utilisateur n'est pas connecté, pas d'erreur on next simplement
     next();
@@ -96,7 +110,7 @@ const addJwtFeatures = (req, res, next) => {
   // fonction qui retourne true ou false si l'utilisateur est authentifié ou pas
   // si on a req.user c'est qu'on a dejà récupérer et vérifier le user (1er middleware)
   req.isAuthenticated = () => !!req.user;
-
+ 
 
   //fonction permettant de supprimer le token depuis le coockie,
   // (Pour rappel il ne faut pas stocker le token en BDD ! à la sécu)
@@ -109,7 +123,9 @@ const addJwtFeatures = (req, res, next) => {
     const token = createJwtToken({ user });
     res.cookie('jwt', token);
   }
+
   next();
+
 }
 
 //"application des middlewares"

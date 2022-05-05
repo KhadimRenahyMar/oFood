@@ -31,6 +31,7 @@ usersRouter
    * @returns {User} 200 - success response
    * @returns {APIError} 404 - fail response
    */
+   //.post('/login', validate('body',userSchema), routerWrapper(usersController.logUser))
    .post('/login', validate('body',userSchema), routerWrapper(usersController.logUser))
     /**
    * Disconnect user, suppressing the session.user

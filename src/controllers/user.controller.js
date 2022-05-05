@@ -7,9 +7,15 @@ const usersController = {
 
       //debug(req.body);
       const user = await usersDataMapper.createUser(req.body);
-      //debug(user)
+      debug('User retourné après ajout en bdd :',user)
+      //const returnedUser = {email: user.email, is_admin_role: user.is_admin_role};
+      const returnedUser = {id: user.id};
+      debug('User passé à la fonction req.login :',user)
+
       req.login(user);
-      debug(user)
+
+    
+     // debug(user)
       res.status(201).json(user);
   },
 
@@ -20,16 +26,18 @@ const usersController = {
    * @returns {user Object} in json format
    */
    async logUser(req, res) {
-    const user = req.body;
-    //const result = await usersDataMapper.findUserPerEmail(user);
-    //const returnedUser = {email: result.email, is_admin_role: result.is_admin_role};
+  
+    //Ici 2 cas 
+    const user = req.body
     const result = await usersDataMapper.findUserPerEmail(user);
-    const returnedUser = {email: result.email, is_admin_role: result.is_admin_role};
+    //const returnedUser = {email: result.email, is_admin_role: result.is_admin_role};
 
-    req.login(returnedUser);
-    res.status(200).json(returnedUser);
+    debug('User récupéré en BDD :', result)
+    req.login(result);
+    res.status(200).json(result);
 
   },
+
 
   logOutUser(req, res) {
 
