@@ -15,7 +15,7 @@ userRoutes.get('api/protected', ensureAuthenticated, (req, res) => {
 
 userRoutes.get('/api',  (req, res) => {
 
-    res.status(200).json('API OK');
+    res.status(200).json({message :'API run'});
     //res.status(200).json({ user: req.user });
 });
 
