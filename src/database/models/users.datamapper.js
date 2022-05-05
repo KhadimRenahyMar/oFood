@@ -15,15 +15,18 @@ const usersDataMapper = {
       const encryptedPassword = await bcrypt.hash(password,salt);
       //const encryptedPassword = password
       const query = {
-        text : `INSERT INTO "users"(email, password) VALUES ($1,$2)`,
+        text : `INSERT INTO "users"(email, password) VALUES ($1,$2) RETURNING *`,
         values:[email,encryptedPassword],
       };
       const results = await client.query(query);
-      debug(results.rows);
+      
       if(!results.rowCount){
         throw new APIError ("This email is already taken. Please choose another one.", 404);
       };
-      return 'User successfully registered, please login to continue.';
+
+     // debug('User successfully registered, please login to continue.');
+    //debug(results.rows[0]);
+      return (results.rows[0]);
   
   },
   
@@ -44,10 +47,21 @@ const usersDataMapper = {
     return results.rows[0];
   },
 
-  findUserPerId(id){
-
-
-
+  async findUserPerId(id){
+    const query = {
+      text : `SELECT * FROM "users"
+              WHERE id = $1`,
+      values:[user.id],
+    }
+    const results = await client.query(query);
+    if(!results.rowCount){
+      throw new APIError ("This account doesn't exist.", 404);
+    };
+    const isCorrect = await bcrypt.compare(user.password,results.rows[0].password);
+    if(!isCorrect){
+      throw new APIError("Credentials don't match, please retry.",404);
+    }
+    return results.rows[0];
   },
 
   /**

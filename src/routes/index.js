@@ -1,5 +1,5 @@
 const userRoutes = require('./user.routes');
-const { ensureAuthenticated } = require('../config/security.config');
+const { ensureAuthenticated } = require('../middlewares/security');
 
 
 

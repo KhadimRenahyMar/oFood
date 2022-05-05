@@ -5,10 +5,11 @@ const APIError = require('../Errors/APIError');
 const usersController = {
   async postNewUser(req, res) {
 
-      debug(req.body);
+      //debug(req.body);
       const user = await usersDataMapper.createUser(req.body);
-      debug(user)
+      //debug(user)
       req.login(user);
+      debug(user)
       res.status(201).json(user);
   },
 
@@ -20,6 +21,8 @@ const usersController = {
    */
    async logUser(req, res) {
     const user = req.body;
+    //const result = await usersDataMapper.findUserPerEmail(user);
+    //const returnedUser = {email: result.email, is_admin_role: result.is_admin_role};
     const result = await usersDataMapper.findUserPerEmail(user);
     const returnedUser = {email: result.email, is_admin_role: result.is_admin_role};
 
