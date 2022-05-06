@@ -10,7 +10,6 @@ const jwt = require('jsonwebtoken');
 //on a besoin de récupérer la réf de app pour pouvoir appliquer nos 2 middlewares
 const { app } = require('../index');
 
-// à adapter 
 
 // Fonction de création d'un Token JWT dans lequel on stocke l'id en BDD de notre user 
 const createJwtToken = ({ user = null}) => {
@@ -46,7 +45,7 @@ const extractUserFromToken = async (req, res, next) => {
 
       debug('debut décodage')
      let decodedToken = jwt.verify(token, secret, { ignoreExpiration: true });
-    //decodedToken = checkExpirationToken(decodedToken, res);
+     decodedToken = checkExpirationToken(decodedToken, res);
 
      debug('Debug decodedToken : ',decodedToken)
      debug('Debug decodedToken : ',decodedToken.sub)

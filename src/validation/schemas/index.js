@@ -1,4 +1,4 @@
-
 const userSchema = require('./user.schema');
+const recipeSchema = require('./recipe.schema');
 
-module.exports = { userSchema };
+module.exports = { userSchema, recipeSchema};
