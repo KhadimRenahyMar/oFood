@@ -5,7 +5,6 @@ const usersController = require('../controllers/user.controller');
 const handleError = require('../middlewares/handleError');
 const routerWrapper = require('../middlewares/routerWrapper');
 
-
 // Joi validation compulsary for each payload containing data
 const validate = require('../validation/validator');
 const { userSchema } = require('../validation/schemas/');

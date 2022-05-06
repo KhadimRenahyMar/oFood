@@ -45,7 +45,7 @@ const extractUserFromToken = async (req, res, next) => {
 
       debug('debut décodage')
      let decodedToken = jwt.verify(token, secret, { ignoreExpiration: true });
-     decodedToken = checkExpirationToken(decodedToken, res);
+     //decodedToken = checkExpirationToken(decodedToken, res);
 
      debug('Debug decodedToken : ',decodedToken)
      debug('Debug decodedToken : ',decodedToken.sub)

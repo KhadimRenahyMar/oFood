@@ -4,7 +4,7 @@ method   | route  | description | returns | implemented ?
 -------- | ------ | ----------- | ------- | -------
 POST| users/signup | Create a new user in database| Return a feedback message (String) | Done
 POST| users/login | Log in user, verifying credentials in database| Welcome back message (String) | Done
-POST| users/logout | Log out user| Goodbye message (String) | Done
+GET| users/logout | Log out user| Goodbye message (String) | Done
 GET | /recipes | get all recipes already registered in databse | Array of Objet _recipes_ (JSON) | Done
 GET | /specific_diet | get all specific_diet already registered in databse (if admin) | Array of Objet _specific_diet_ (JSON) | Done
 GET | /meals/:users_id | get all the meals possessed by the requested user  | Array of Objet _recipes_ (JSON) | Done
