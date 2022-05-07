@@ -4,8 +4,7 @@ module.exports ={
     DB_PASS:`${process.env.POSTGRES_PASSWORD}`,
     DB_HOST:`${process.env.POSTGRES_HOST}`,
     DB_NAME:`${process.env.POSTGRES_DB}`,
-
-    JWT_SECRET:`1234`
+    JWT_SECRET:`${process.env.JWT_SECRET}`
 
 }
 

@@ -14,7 +14,7 @@ const recipeRouter = require('express').Router();
 recipeRouter
  .get('/', routerWrapper(recipeController.getAllRecipes))
  .get('/:recipeId', routerWrapper(recipeController.getRecipInfosByID)) 
- .post('/newrecipe/', validate('body', recipeSchema), routerWrapper(recipeController.addNewRecipe))
+ .post('/newrecipe/',validate('body', recipeSchema), routerWrapper(recipeController.addNewRecipe))
 
 
 
