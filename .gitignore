@@ -1,6 +1,10 @@
 .env
-node_modules
-.dockerignore
-Dockerfile.dev
-Dockerfile.prod
-pm2.config.js
+**/node_modules
+.gitignore
+
+/api/Dockerfile.prod
+/client/Dockerfile.prod
+/reverse-proxy/conf/prod.conf
+docker-compose.prod.yml
+note.cde.prod.cmd
+
