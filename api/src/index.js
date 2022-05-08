@@ -6,12 +6,15 @@ const app = express();
 // on rend disdo la ref de app pour pouvoir l'utiliser dans notre middleware JWT
 exports.app = app;
 
-// Cross Origin middleware
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  next()
-})
+
+// // Setting CORS
+// const cors = require('cors');
+// const corsOptions = {
+//   origin: '*',
+//   optionSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+// app.use(cors(corsOptions));
+
 
 require('./database/client_pg')
 

@@ -15,17 +15,17 @@ router_index.use('/api/recipes',recipeRoutes);
 router_index.use('/specific_diet',specificDietRoutes);
 router_index.use('/api/meals',mealRoutes);
 
-router_index.get('/api',is_auth,  (req, res) => {
-
-    res.status(200).json({message :'API run'});
-
-});
-
-// router_index.get('/api',  (req, res) => {
+// router_index.get('/api',is_auth,  (req, res) => {
 
 //     res.status(200).json({message :'API run'});
 
 // });
+
+router_index.get('/api',  (req, res) => {
+
+    res.status(200).json({message :'API run'});
+
+});
 
 
 module.exports = router_index;
