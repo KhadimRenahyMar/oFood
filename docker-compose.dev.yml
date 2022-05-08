@@ -78,5 +78,6 @@ services:
 
 
 volumes:
+# A voir avec l'équipe comment elle veut gérer la persistance ?
   db_prod_postgres_ofood:
       external: true
