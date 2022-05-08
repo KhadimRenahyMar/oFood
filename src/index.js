@@ -5,6 +5,14 @@ const app = express();
 
 // on rend disdo la ref de app pour pouvoir l'utiliser dans notre middleware JWT
 exports.app = app;
+
+// Cross Origin middleware
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
+
 require('./database/client_pg')
 
 //permet de positionner sur l'objet req une clé coockie (si il existe)
