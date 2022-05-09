@@ -51,19 +51,19 @@ services:
     ports:
     - 54320:5432
 
-    # volumes:
-    # - type: bind
-    #   source: ./postgres_data
-    #   target: /var/lib/postgresql/
+    # # volumes:
+    # # - type: bind
+    # #   source: ./postgres_data
+    # #   target: /var/lib/postgresql/
 
     volumes:
     - type: volume
       source: db_prod_postgres_ofood
       target: /var/lib/postgresql/data
 
-    # - type: bind
-    #   source: ./setup.sh
-    #   target: /docker-entrypoint-initdb.d/initdb.sh
+    # # - type: bind
+    # #   source: ./setup.sh
+    # #   target: /docker-entrypoint-initdb.d/initdb.sh
 
 
   reverse-proxy:
