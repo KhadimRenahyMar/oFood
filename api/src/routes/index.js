@@ -21,6 +21,15 @@ router_index.use('/api/meals',mealRoutes);
 
 // });
 
+const i = 0
+
+router_index.get('/api/message',  (req, res) => {
+
+   
+    res.status(200).json("hello depuis le back");
+
+});
+
 router_index.get('/api',  (req, res) => {
 
     res.status(200).json({message :'API run'});

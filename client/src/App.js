@@ -3,20 +3,22 @@ import './App.css';
 import { useState, useEffect } from 'react';
 
 function App() {
-  const [count, setCount] = useState();
+  const [Msg, SetfetchMsg] = useState();
 
   useEffect(() => {
-    async function fetchCount() {
+    async function fetchMsg() {
       try {
-        const response = await fetch('/api/count');
+
+        const response = await fetch('/api/message');
         if (response.ok) {
-          setCount(await response.json());
+          console.log(response);
+          SetfetchMsg(await response.json());
         }
       } catch (e) {
         console.log(e);
       }
     }
-    fetchCount();
+    fetchMsg();
   }, []);
 
   return (
@@ -26,7 +28,7 @@ function App() {
 
 
         <p>
-          Nbre visites d' O_Food : { count }
+          Msg du Back : { Msg }
         </p>
 
     </div>
