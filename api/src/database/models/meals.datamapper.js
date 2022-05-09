@@ -6,9 +6,10 @@ const APIError = require("../../Errors/APIError");
 const mealsDataMapper = {
   async postNewMeals(meals) {
     const query = {
-      text: `SELECT New_create_meals($1)`,
+      //text: `SELECT New_create_meals($1)`,
+      text: `SELECT New_create_meals()`,
       //values: [meals.user_id,meals.startDate, meals.nbrRepas],
-      values: [meals.user_id],
+     // values: [meals.user_id],
     };
     await client.query(query);
     if(!results.rowCount){

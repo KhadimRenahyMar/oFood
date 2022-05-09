@@ -11,7 +11,7 @@ const is_auth = require('../middlewares/authenticated')
 
 // Adding subrouters
 router_index.use('/api/users',userRoutes);
-router_index.use('/api/recipes',is_auth,recipeRoutes);
+router_index.use('/api/recipes',recipeRoutes);
 router_index.use('/specific_diet',specificDietRoutes);
 router_index.use('/api/meals',mealRoutes);
 
