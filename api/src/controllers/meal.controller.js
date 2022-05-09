@@ -7,8 +7,9 @@ const mealController = {
     async addNewMeals(req,res){
 
         const meals = {
-            startDate : req.body,
-            nbrRepas: 21
+            user_id : req.user.id,
+            //startDate : req.body,
+           // nbrRepas: 21
         }
 
         const result = await mealsDataMapper.postNewMeals(meals);

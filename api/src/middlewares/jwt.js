@@ -61,7 +61,6 @@ const extractUserFromToken = async (req, res, next) => {
 
       if (user) {
 
-
         //ici on place le user sur une clé user de l'objet req, pour le rendre dispo sur les middleware suivant
         req.user = user;
 

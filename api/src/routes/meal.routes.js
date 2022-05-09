@@ -12,11 +12,11 @@ const validate = require('../validation/validator');
 
 const mealRouter = require('express').Router();
 
-// mealRouter
+ mealRouter
 //  .get('/', routerWrapper(recipeController.getAllRecipes))
 //  .get('/:recipeId', routerWrapper(recipeController.getRecipInfosByID)) 
-//  .post('/newrecipe/', validate('body', recipeSchema), routerWrapper(recipeController.addNewRecipe))
-
+//.post('/newrecipe/:user_id', validate('body', recipeSchema), routerWrapper(recipeController.addNewRecipe))
+  .post('/newmeals', routerWrapper(mealController.addNewMeals))
 
 mealRouter.use(handleError);
 
