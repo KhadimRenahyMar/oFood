@@ -7,12 +7,11 @@ const mealsDataMapper = {
   async postNewMeals(meals) {
 
     const query = {
-      //text: `SELECT New_create_meals($1)`,
-      text: `SELECT * FROM new_create_meals();`,
-      //values: [meals.user_id,meals.startDate, meals.nbrRepas],
-     // values: [meals.user_id],
+      text: `SELECT * FROM populate_meals($1);`,
+      values: [meals],
     };
     await client.query(query);
+    
     if(!results.rowCount){
       throw new APIError ("No recipe saved yet", 404);
     };
