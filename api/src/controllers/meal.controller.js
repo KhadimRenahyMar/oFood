@@ -17,7 +17,7 @@ const mealController = {
            
            planning.push ({  
                startDate :'2022-05-10 06:56:30.513834+00',
-               repas_id:repas,
+               repas_id:repas.id,
                repas: repas
                
             })
