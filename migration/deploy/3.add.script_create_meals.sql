@@ -1,18 +1,15 @@
 -- -- Deploy ofood:3.add.script_create_meals to pg
 
---  BEGIN;
+BEGIN;
 
---  CREATE OR REPLACE FUNCTION New_create_meals()
 
--- --  --   user_id NUMBER,
--- --  --   meals_startDate DATE,
--- --  --   nbrRepas NUMBER)
---      RETURNS void AS 
---  $$
+ CREATE OR REPLACE FUNCTION new_create_meals() RETURNS recipes AS
+$$
+SELECT * FROM recipes;
+$$ LANGUAGE sql ;
 
--- --DECLARE
 
---    -- BEGIN
+
 
 -- --Etape 1
 -- -- On récupère toutes les recettes en bdd (getAllRecipes)
@@ -21,14 +18,6 @@
 
 -- --on filtre toutes celles qui ne font pas parties du régime spécifique du user
 -- --(joindre la table user à la table specific_diet )
-
-
--- -- SELECT *
--- -- FROM users
--- -- INNER JOIN users_choose_specific_diet on users_choose_specific_diet.users_id = users.id
--- -- WHERE users.id =1;
-
-
 
 
 
@@ -51,19 +40,4 @@
 
 
 
-
-
-
---    --     LOOP
-
-
-
-
---   --      END LOOP;
-
---   --  END
-
--- $$ LANGUAGE plpgsql;
-
-
---  COMMIT;
+ COMMIT;

@@ -105,6 +105,8 @@ INSERT INTO public.specific_diet_has_recipes(
 			(3, 3, 23, '2022-04-01 08:00:00', '2022-04-01 18:01:00'),
 			(4, 4, 14, '2022-04-01 08:00:00', '2022-04-01 18:01:00');
 			
-
+INSERT INTO public.users_choose_specific_diet(
+	id, users_id, specific_diet_id)
+	VALUES (1, 1, 1);
 
 COMMIT;

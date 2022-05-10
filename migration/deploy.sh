@@ -24,6 +24,7 @@ sqitch revert docker
 
 # je deploy
 #sqitch deploy db:pg:mydb
+#
 sqitch deploy docker
 
 #sqitch deploy heroku
