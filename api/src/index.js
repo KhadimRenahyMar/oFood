@@ -16,7 +16,7 @@ exports.app = app;
 // app.use(cors(corsOptions));
 
 
-require('./database/client_pg')
+// require('./database/client_pg')
 
 //permet de positionner sur l'objet req une clé coockie (si il existe)
 app.use(cookieParser());

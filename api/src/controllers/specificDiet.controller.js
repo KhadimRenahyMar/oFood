@@ -4,7 +4,20 @@ const APIError = require('../Errors/APIError');
 
 const specificDietController = {
  
-
+    async getAllSpecificDiet(_, res) {
+        const result = await specificsDietDataMapper.getAllSpecificDiet();
+        res.status(200).json(result);
+      },
+      async getSpecificDietInfosByID(req, res) {
+        const specific_dietId = req.params.recipeId;
+        const result = await specificsDietDataMapper.getSpecificDietInfosByID(specific_dietId);
+        res.status(200).json(result);
+      },
+      async addNewSpecificDiet(req,res){
+        const specific_diet = req.body;
+        const result = await specificsDietDataMapper.postNewSpecificDiet(specific_diet);
+        res.status(201).json(result);
+      },
 
 };
 

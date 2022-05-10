@@ -1,20 +1,36 @@
 const debug = require('debug')('Meal_Controller');
 const mealsDataMapper = require('../database/models/meals.datamapper');
+const recipesDataMapper = require('../database/models/recipes.datamapper');
+
 const APIError = require('../Errors/APIError');
 
 const mealController = {
 
-    async addNewMeals(req,res){
+    async addMeals(req,res){
+        debug('appel méthode add meals')
 
-        const meals = {
-            startDate : req.body,
-            nbrRepas: 21
+       const planning =[]
+       const result = await recipesDataMapper.get21Recipes();
+
+       for (const repas of result) {
+
+           
+           planning.push ({  
+               startDate :'2022-05-10 06:56:30.513834+00',
+               repas_id:repas,
+               repas: repas
+               
+            })
+            
         }
+        
+        debug('planning',planning ) 
 
-        const result = await mealsDataMapper.postNewMeals(meals);
-        res.status(201).json(result);
+        res.status(201).json(planning);
       },
 
+
+      
 
 };
 

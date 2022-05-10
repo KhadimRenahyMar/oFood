@@ -5,12 +5,21 @@ const APIError = require("../../Errors/APIError");
 
 const mealsDataMapper = {
   async postNewMeals(meals) {
+
     const query = {
-      text: `INSERT INTO adds_new_meals($1,$2)`,
-      values: [meals.startDate, meals.nbrRepas],
+      //text: `SELECT New_create_meals($1)`,
+      text: `SELECT * FROM new_create_meals();`,
+      //values: [meals.user_id,meals.startDate, meals.nbrRepas],
+     // values: [meals.user_id],
     };
     await client.query(query);
-    return `The meals ${meals.nbrRepas} has been saved into database`;
+    if(!results.rowCount){
+      throw new APIError ("No recipe saved yet", 404);
+    };
+
+    debug('fct_sql',results.rows )
+    return results.rows;
+
   },
 };
 
