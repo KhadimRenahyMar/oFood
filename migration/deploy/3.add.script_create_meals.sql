@@ -2,21 +2,21 @@
 
 BEGIN;
 
-CREATE FUNCTION populate_meals(meals json) RETURNS void AS $$
+-- CREATE FUNCTION populate_meals(meals json) RETURNS void AS $$
 
-INSERT INTO meals
-(start_date, users_id, recipes_id)
-VALUES(
-(meals->>'start_date')::text,
-(meals->>'users_id')::int,
-(meals->>'recipes_id')::int
+-- INSERT INTO meals
+-- (start_date, users_id, recipes_id)
+-- VALUES(
+-- (meals->>'start_date')::text,
+-- (meals->>'users_id')::int,
+-- (meals->>'recipes_id')::int
 
-) RETURNING *;
+-- ) RETURNING *;
 
---dans le returning on doit retourner toutes les repas affectés à un utilisateur 
+-- --dans le returning on doit retourner toutes les repas affectés à un utilisateur 
 
 
-$$ LANGUAGE sql STRICT;
+-- $$ LANGUAGE sql STRICT;
 
 
 
