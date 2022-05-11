@@ -25,7 +25,7 @@ const specificDietDataMapper = {
         if(!results.rowCount){
           throw new APIError ("This specific diet is still not saved in base.", 404);
         };
-        return results.rows;
+        return results.rows[0];
       },
 
       async postNewSpecificDiet(specific_diet){

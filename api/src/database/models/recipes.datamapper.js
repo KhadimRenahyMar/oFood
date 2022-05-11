@@ -21,7 +21,9 @@ const recipesDataMapper = {
     return results.rows;
   },
 
-  async getRecipeInfosById(recipeId) {
+  async getRecipeById(recipeId) {
+
+    debug('recipeId depuis datamapper',recipeId )
     const query = {
       text: `SELECT * FROM "recipes"
                   WHERE "id" = $1;`,
@@ -31,7 +33,7 @@ const recipesDataMapper = {
     if (!results.rowCount) {
       throw new APIError("This recipe is still not saved in base.", 404);
     }
-    return results.rows;
+    return results.rows[0];
   },
 
   async postNewRecipe(recipe) {
