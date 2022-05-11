@@ -12,7 +12,16 @@ const validate = require('../validation/validator');
 const mealRouter = require('express').Router();
 
  mealRouter
+  .get('/:userId', routerWrapper(mealController.getAllMealsByUserID)) 
+
+  // temporaire pour test front réception de menus
   .post('/addmeals', routerWrapper(mealController.addMeals))
+  
+  // Route en phase de dev et test 
+  .post('/postnewmeals', routerWrapper(mealController.postNewMeals))
+
+
+
 
 mealRouter.use(handleError);
 

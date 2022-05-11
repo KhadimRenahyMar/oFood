@@ -12,8 +12,10 @@ const recipeSchema  = require('../validation/schemas');
 const recipeRouter = require('express').Router();
 
 recipeRouter
- .get('/', routerWrapper(recipeController.getAllRecipes))
- .get('/:recipeId', routerWrapper(recipeController.getRecipInfosByID)) 
+.get('/', routerWrapper(recipeController.getAllRecipes))
+.get('/:recipeId', routerWrapper(recipeController.getRecipeInfosByID)) 
+
+// à finir et tester ( ! pas encore fait)
  .post('/newrecipe/',validate('body', recipeSchema), routerWrapper(recipeController.addNewRecipe))
 
 

@@ -9,7 +9,7 @@ const specificDietController = {
         res.status(200).json(result);
       },
       async getSpecificDietInfosByID(req, res) {
-        const specific_dietId = req.params.recipeId;
+        const specific_dietId = req.params.specific_dietId;
         const result = await specificsDietDataMapper.getSpecificDietInfosByID(specific_dietId);
         res.status(200).json(result);
       },

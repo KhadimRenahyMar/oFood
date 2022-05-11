@@ -13,7 +13,12 @@ const validate = require('../validation/validator');
 const specificDietRouter = require('express').Router();
 
 specificDietRouter
-//.post('/signup',validate('body',userSchema),routerWrapper(xxxxxController.postNewUser))
+.get('/', routerWrapper(specificDietController.getAllSpecificDiet))
+.get('/:specific_dietId', routerWrapper(specificDietController.getSpecificDietInfosByID)) 
+
+// post pour création de specific_diet à terminer
+
+
 
 
 specificDietRouter.use(handleError);
