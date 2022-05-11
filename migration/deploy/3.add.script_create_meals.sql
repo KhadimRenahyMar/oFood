@@ -2,12 +2,12 @@
 
 BEGIN;
 
-CREATE FUNCTION populate_meals(meals json) RETURNS void AS $$
+CREATE FUNCTION populate_meals(meals json) RETURNS meals AS $$
 
 INSERT INTO meals
 (start_date, users_id, recipes_id)
 VALUES(
-(meals->>'start_date')::text,
+(meals->>'start_date')::timestamp,
 (meals->>'users_id')::int,
 (meals->>'recipes_id')::int
 
