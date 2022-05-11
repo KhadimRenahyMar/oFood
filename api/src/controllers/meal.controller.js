@@ -36,7 +36,7 @@ const mealController = {
 
       //
       async postNewMeals(req,res){
-        debug('appel méthode add meals')
+        debug('appel méthode post new meals')
 
         // const meals ={
         //     user.id: req.params.userId,
@@ -52,7 +52,7 @@ const mealController = {
 
         const result = await mealsDataMapper.postNewMeals(meals);
 
-        res.status(201).json(planning);
+        res.status(201).json(result);
         
       },
 

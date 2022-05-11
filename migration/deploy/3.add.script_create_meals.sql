@@ -2,7 +2,10 @@
 
 BEGIN;
 
-CREATE FUNCTION populate_meals(meals json) RETURNS meals AS $$
+ALTER TABLE IF EXISTS public.meals
+    ALTER COLUMN id RESTART SET START 22;
+
+CREATE OR REPLACE FUNCTION populate_meals(meals json) RETURNS meals AS $$
 
 INSERT INTO meals
 (start_date, users_id, recipes_id)
@@ -21,6 +24,12 @@ $$ LANGUAGE sql STRICT;
 
 
  COMMIT;
+
+--pour test 
+-- SELECT * FROM populate_meals('{"start_date":"2022-05-10 06:56:30.513834+00",
+-- "users_id":1, "recipes_id":1}');
+
+
 
 -- --jointure ok sélection à faire
 -- SELECT *

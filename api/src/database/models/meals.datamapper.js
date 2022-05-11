@@ -56,7 +56,7 @@ const mealsDataMapper = {
       text: `SELECT * FROM populate_meals($1);`,
       values: [meals],
     };
-    await client.query(query);
+    const results= await client.query(query);
     
     if(!results.rowCount){
       throw new APIError ("No recipe saved yet", 404);
