@@ -12,7 +12,7 @@ const mealController = {
         res.status(200).json(result);
       },
 
-
+    // Methode pour phase de test
     async addMeals(req,res){
         debug('appel méthode add meals')
 
@@ -27,13 +27,14 @@ const mealController = {
                repas: repas
             })
         }
-        
-        debug('planning',planning ) 
 
+        debug('planning',planning ) 
         res.status(201).json(planning);
 
       },
 
+
+      //
       async postNewMeals(req,res){
         debug('appel méthode add meals')
 
@@ -46,6 +47,7 @@ const mealController = {
         const meals ={
             startDate:'2022-05-10 06:56:30.513834+00',
             users_id: 1,
+            recipes_id:1
         }
 
         const result = await mealsDataMapper.postNewMeals(meals);
@@ -54,9 +56,6 @@ const mealController = {
         
       },
 
-
-
-      
 
 };
 

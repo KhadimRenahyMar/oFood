@@ -7,13 +7,13 @@ const app = express();
 exports.app = app;
 
 
-// // Setting CORS
-// const cors = require('cors');
-// const corsOptions = {
-//   origin: '*',
-//   optionSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
-// app.use(cors(corsOptions));
+// Setting CORS
+const cors = require('cors');
+const corsOptions = {
+  origin: '*',
+  optionSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 
 
 // require('./database/client_pg')
