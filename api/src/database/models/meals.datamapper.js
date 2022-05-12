@@ -7,21 +7,65 @@ const mealsDataMapper = {
 
   async getAllMealsByUserID(userId) {
 
-    // A Adapter
 
-    // const query = {
-    //   text: `SELECT * FROM "recipes"
-    //               WHERE "id" = $1;`,
-    //   values: [recipeId],
-    // };
-    // const results = await client.query(query);
-    // if (!results.rowCount) {
-    //   throw new APIError("This recipe is still not saved in base.", 404);
-    // }
-    // return results.rows;
+//  SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
+//  FROM "users"
+//  join meals on meals.users_id=users.id
+//  join recipes on recipes.id = meals.recipes_id
+//  where users.id = 1
+//  GROUP BY users.id,meals.start_date ;
+   
+    const query = {
+     // text: `SELECT * FROM meals_by_user_id($1);`,
+
+
+     text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
+     FROM "users"
+     join meals on meals.users_id=users.id
+     join recipes on recipes.id = meals.recipes_id
+     where users.id = $1
+     GROUP BY users.id,meals.start_date ;`,
+
+    //  text: `SELECT users.id,meals.start_date,recipes.id,recipes.name,recipes.photo_link,recipes.meal_time,
+    //  recipes.max_imc,recipes.type,recipes.steps_desc,recipes.ingredient_desc
+    //  FROM public.users
+    //  join meals on meals.users_id=users.id
+    //  join recipes on recipes.id = meals.recipes_id
+    //  where users.id = $1;`,
+
+      values: [userId],
+    };
+
+
+    const results = await client.query(query);
+
+    debug('meals',results )
+    if (!results.rowCount) {
+      throw new APIError("This user have not meals saved in base.", 404);
+    }
+    return results.rows;
+
   },
 
 
+
+  async postNewMeals(meals) {
+
+    const query = {
+      text: `SELECT * FROM populate_meals($1);`,
+      values: [meals],
+    };
+    const results= await client.query(query);
+    
+    if(!results.rowCount){
+      throw new APIError ("No recipe saved yet", 404);
+    };
+
+    debug('fct_sql',results.rows )
+    return results.rows;
+
+  },
+};
 
 // -Etape 1
 // -- -- On récupère toutes les recettes en bdd (getAllRecipes)
@@ -48,25 +92,6 @@ const mealsDataMapper = {
 
 
 // -- --(attention boucle si ) 
-
-
-  async postNewMeals(meals) {
-
-    const query = {
-      text: `SELECT * FROM populate_meals($1);`,
-      values: [meals],
-    };
-    const results= await client.query(query);
-    
-    if(!results.rowCount){
-      throw new APIError ("No recipe saved yet", 404);
-    };
-
-    debug('fct_sql',results.rows )
-    return results.rows;
-
-  },
-};
 
 
 

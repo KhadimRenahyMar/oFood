@@ -2,8 +2,34 @@
 
 BEGIN;
 
+ALTER TABLE IF EXISTS public.users
+    ALTER COLUMN id RESTART SET START 3;
+
+
+ALTER TABLE IF EXISTS public.recipes
+    ALTER COLUMN id RESTART SET START 38;
+
+
 ALTER TABLE IF EXISTS public.meals
     ALTER COLUMN id RESTART SET START 22;
+
+
+ALTER TABLE IF EXISTS public.users_create_recipes
+    ALTER COLUMN id RESTART SET START 6;
+
+
+ALTER TABLE IF EXISTS public.specific_diet
+    ALTER COLUMN id RESTART SET START 6;
+
+
+ALTER TABLE IF EXISTS public.specific_diet_has_recipes
+    ALTER COLUMN id RESTART SET START 6;
+
+
+ALTER TABLE IF EXISTS public.users_choose_specific_diet
+    ALTER COLUMN id RESTART SET START 2;
+
+
 
 CREATE OR REPLACE FUNCTION populate_meals(meals json) RETURNS meals AS $$
 
@@ -25,33 +51,3 @@ $$ LANGUAGE sql STRICT;
 
  COMMIT;
 
---pour test 
--- SELECT * FROM populate_meals('{"start_date":"2022-05-10 06:56:30.513834+00",
--- "users_id":1, "recipes_id":1}');
-
-
-
--- --jointure ok sélection à faire
--- SELECT *
--- FROM public.users
--- join users_choose_specific_diet on users_choose_specific_diet.users_id = users.id
--- join specific_diet on users_choose_specific_diet.id =specific_diet.id
-
-
-
--- SELECT users.id, users.email,users.firstname
--- FROM public.users
--- join users_choose_specific_diet on users_choose_specific_diet.users_id = users.id
--- join specific_diet on users_choose_specific_diet.id =specific_diet.id
--- GROUP BY users.id;
-
-
--- --Methode 1 Déclaration 1 ok
---  CREATE OR REPLACE FUNCTION get_fields_demo() RETURNS recipes AS
--- $$
--- SELECT * FROM recipes;
--- $$ LANGUAGE sql ;
-
-
--- --Apelle fct ok
--- SELECT * FROM get_fields_demo();

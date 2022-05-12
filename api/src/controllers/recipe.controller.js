@@ -4,10 +4,12 @@ const APIError = require('../Errors/APIError');
 
 const recipeController = {
 
+  
     async getAllRecipes(_, res) {
         const result = await recipesDataMapper.getAllRecipes();
         res.status(200).json(result);
       },
+
 
       async getRecipeInfosByID(req, res) {
         const recipeId = req.params.recipeId;
@@ -16,6 +18,7 @@ const recipeController = {
         res.status(200).json(result);
       },
       
+
       async addNewRecipe(req,res){
         const recipe = req.body;
         const result = await recipesDataMapper.postNewRecipe(recipe);
@@ -24,5 +27,6 @@ const recipeController = {
 
       
 };
+
 
 module.exports = recipeController;

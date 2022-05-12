@@ -7,7 +7,7 @@ const routerWrapper = require('../middlewares/routerWrapper');
 
 // Joi validation compulsary for each payload containing data
 const validate = require('../validation/validator');
-//const { xxxxSchema } = require('../validation/schemas');
+const { specific_Diet_Schema } = require('../validation/schemas');
 
 const mealRouter = require('express').Router();
 
@@ -18,7 +18,7 @@ const mealRouter = require('express').Router();
   .post('/addmeals', routerWrapper(mealController.addMeals))
   
   // Route en phase de dev et test 
-  .post('/postnewmeals', routerWrapper(mealController.postNewMeals))
+  .post('/:userId/postnewmeals', routerWrapper(mealController.postNewMeals))
 
 
 

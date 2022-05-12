@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 //a placer absolument après cookieParser, sinon on aura un pb de lecture de la clé cookies à l'interieur !
 //on execute ( applique )ici la cette couche jwt.
-require('./middlewares/jwt');
+require('./middlewares/jwt_cookie');
 
 
 app.use(express.json())
