@@ -47,9 +47,10 @@ const usersController = {
     debug('User récupéré en BDD :', result)
     req.login(result);
 
+    // A réactiver pour gestion token par cookie ne pas oublier de commenter la ligne 54
     // res.status(200).json(result);
     
-    //temporaire
+    //temporaire pour gestion token par header sur authorization
     res.status(200).json(returnedUser);
 
 

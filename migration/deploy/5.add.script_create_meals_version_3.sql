@@ -1,30 +1,27 @@
--- Deploy ofood:4.add.script_create_meals_version_2 to pg
+-- Deploy ofood:5.add.script_create_meals_version_3 to pg
 
 BEGIN;
 
-CREATE OR REPLACE FUNCTION populate_meals_v2(meals_v2 json) RETURNS void AS $$
-    -- test fct version 2
-    --on recoit l'objet suivant:
+CREATE OR REPLACE FUNCTION populate_meals_v3(
+    meals_start_date timestamp,
+    meals_users_id INT,
+    meals_recipesId INT [] ) RETURNS void AS $$
 
-            -- const meals_v2 ={
-            -- start_date:'2022-05-10 06:56:30.513834+00',
-            -- users_id: req.params.userId,
-            -- recipes_id:[1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34,27]}
+    -- test fct version 3
+    --on recoit les variables suivantes:
+    
+    -- start_date:'2022-05-10 06:56:30.513834+00',
+    -- users_id: req.params.userId,
+    -- recipes_id:[1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34,27]
+
 
    DECLARE   
    --Déclaration des variables internes à la fonction.  
-    date_debut timestamp;
-    userId INT;
-    recipesId INT [];
 
     i INT;
     j INT;
 
     BEGIN
-
-    date_debut := meals->>'start_date'::timestamp;
-    userId    := meals->>'users_id'::int;
-    recipesId := meals->>'recipes_id'::int[];
 
 
     --boucle de 7 jours 
@@ -39,7 +36,7 @@ CREATE OR REPLACE FUNCTION populate_meals_v2(meals_v2 json) RETURNS void AS $$
                             --et la val3 du tableau de recipes_id 
 
         INSERT INTO meals (start_date, users_id, recipes_id) 
-                    VALUES( date_debut,userId ,recipesId[(i*j)] );
+                    VALUES( meals_start_date,meals_users_id ,meals_recipesId[(i*j)] );
 
 	  
         -- avt de sortir on ajoute 1 à la date du jour
@@ -66,6 +63,3 @@ $$ LANGUAGE plpgsql;
 
 
  COMMIT;
-
-
-
