@@ -33,6 +33,7 @@ ALTER TABLE IF EXISTS public.users_choose_specific_diet
 
 CREATE OR REPLACE FUNCTION populate_meals(meals json) RETURNS meals AS $$
 
+ -- test fct version 1
 INSERT INTO meals
 (start_date, users_id, recipes_id)
 VALUES(
@@ -42,12 +43,11 @@ VALUES(
 
 ) RETURNING *;
 
---dans le returning on doit retourner toutes les repas affectés à un utilisateur 
-
 
 $$ LANGUAGE sql STRICT;
 
 
 
  COMMIT;
+
 

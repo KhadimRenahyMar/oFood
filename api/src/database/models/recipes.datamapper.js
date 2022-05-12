@@ -45,6 +45,42 @@ const recipesDataMapper = {
     return results.rows[0];
   },
 
+  async getRecipes_With_ImcMax_and_Specific_diet_for_user(profil_user){
+
+      // SELECT
+      // users.id,
+      // recipes.id
+      // FROM public.users
+      // join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
+      // join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
+      // join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
+      // join recipes on recipes.id = specific_diet_has_recipes.recipes_id
+      // where users.id = 1 and users.imc<=recipes.max_imc;
+      
+      const query = {
+      text: `SELECT
+             users.id,
+             recipes.id
+             FROM public.users
+             join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
+             join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
+             join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
+             join recipes on recipes.id = specific_diet_has_recipes.recipes_id
+             where users.id = $1 and users.imc<=recipes.max_imc
+             ORDER BY RANDOM() LIMIT 21;`,
+             
+        values: [profil_user.users_id],
+      };
+      const results = await client.query(query);
+      if (!results.rowCount) {
+        throw new APIError("No recipe saved yet", 404);
+      }
+      return results.rows;
+
+
+
+  },
+
   async postNewRecipe(recipe) {
     const query = {
       text: `INSERT INTO "recipes"("name","photo_link", "meal_time", "max_imc","type", "steps_desc","ingredient_desc") VALUES ($1,$2,$3,$4,$5,$5,$6,$7);`,

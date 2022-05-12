@@ -7,7 +7,6 @@ const mealsDataMapper = {
 
   async getAllMealsByUserID(userId) {
 
-
 //  SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
 //  FROM "users"
 //  join meals on meals.users_id=users.id
@@ -17,7 +16,6 @@ const mealsDataMapper = {
    
     const query = {
      // text: `SELECT * FROM meals_by_user_id($1);`,
-
 
      text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
      FROM "users"
@@ -48,13 +46,20 @@ const mealsDataMapper = {
   },
 
 
-
   async postNewMeals(meals) {
 
+    //pour le test fct version 1
+    // const query = {
+    //   text: `SELECT * FROM populate_meals($1);`,
+    //   values: [meals],
+    // };
+
+    //pour le test fct version 2
     const query = {
-      text: `SELECT * FROM populate_meals($1);`,
+      text: `SELECT * FROM populate_meals_v2($1);`,
       values: [meals],
     };
+
     const results= await client.query(query);
     
     if(!results.rowCount){
@@ -66,33 +71,6 @@ const mealsDataMapper = {
 
   },
 };
-
-// -Etape 1
-// -- -- On récupère toutes les recettes en bdd (getAllRecipes)
-// --     SELECT * FROM recipes;
-
-
-// -- --on filtre toutes celles qui ne font pas parties du régime spécifique du user
-// -- --(joindre la table user à la table specific_diet )
-
-
-
-// -- --on filtre sur les résultat précédents les recettes qui ont un max_imc <=  à son imc
-
-
-// -- --Etape 2 (limit avec random)
-// -- --Soit on sélectionne les 21 ere recettes (return sous tableau), soit on fait un random de 21
-
-
-// -- --Etape 3
-// -- --on boucle sur 7jours 
-
-// -- --on boucle sur 3 menus 
-// --  --On lance insert correspondants aux 3 repas du jour avec la startdate, 
-
-
-// -- --(attention boucle si ) 
-
 
 
 module.exports = mealsDataMapper;
