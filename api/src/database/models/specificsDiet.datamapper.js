@@ -3,7 +3,6 @@ const debug = require('debug')("SpecificDiet_DataMapper");
 const APIError = require('../../Errors/APIError');
 
 
-
 const specificDietDataMapper = {
 
     async getAllSpecificDiet() {
@@ -29,16 +28,15 @@ const specificDietDataMapper = {
       },
 
       async postNewSpecificDiet(specific_diet){
+
         const query = {
-          text: `INSERT INTO "specific_diet"(photo_link, meal_time, max_imc, steps_desc,) VALUES ($1)`,
+          text: `INSERT INTO "specific_diet"(name) VALUES ($1)`,
           values: [specific_diet.name],
         };
         await client.query(query);
         return 'The specific diet has been saved into database';
       },
   
-
-
 
 }
 

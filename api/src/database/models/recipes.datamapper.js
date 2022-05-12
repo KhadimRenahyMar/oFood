@@ -12,8 +12,17 @@ const recipesDataMapper = {
     return results.rows;
   },
 
-  async get21Recipes() {
-    const query = `SELECT * FROM recipes ORDER BY RANDOM() LIMIT 21;`
+  async get21Recipes(type) {
+    //methode test 1
+    //const query = `SELECT * FROM recipes ORDER BY RANDOM() LIMIT 21;`
+
+    //methode front
+    const query = {
+      text: `SELECT * FROM "recipes"
+             WHERE type=$1
+             ORDER BY RANDOM() LIMIT 21;`,
+      values: [type],
+    };
     const results = await client.query(query);
     if (!results.rowCount) {
       throw new APIError("No recipe saved yet", 404);
@@ -38,11 +47,13 @@ const recipesDataMapper = {
 
   async postNewRecipe(recipe) {
     const query = {
-      text: `INSERT INTO "recipes"(photo_link, meal_time, max_imc, steps_desc,) VALUES ($1,$2,$3,$4,$5)`,
+      text: `INSERT INTO "recipes"("name","photo_link", "meal_time", "max_imc","type", "steps_desc","ingredient_desc") VALUES ($1,$2,$3,$4,$5,$5,$6,$7);`,
       values: [
+        recipe.name,
         recipe.photo_link,
         recipe.meal_time,
         recipe.max_imc,
+        recipe.type,
         recipe.steps_desc,
         recipe.ingredient_desc,
       ],

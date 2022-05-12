@@ -53,3 +53,16 @@ usersRouter
 usersRouter.use(handleError);
 
 module.exports = usersRouter;
+
+// const response = await fetch(BASE_URL, {
+//   method: 'POST',
+//   body: JSON.stringify(userForm),
+//   headers: {
+//       'Content-Type': 'application/json'
+//   }
+// });
+// if (response.ok) {
+//   return response.json();
+// } else {
+//   throw await response.json();
+// }

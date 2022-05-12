@@ -7,16 +7,14 @@ const routerWrapper = require('../middlewares/routerWrapper');
 
 // Joi validation compulsary for each payload containing data
 const validate = require('../validation/validator');
-const recipeSchema  = require('../validation/schemas');
+const {recipeSchema}  = require('../validation/schemas');
 
 const recipeRouter = require('express').Router();
 
 recipeRouter
 .get('/', routerWrapper(recipeController.getAllRecipes))
 .get('/:recipeId', routerWrapper(recipeController.getRecipeInfosByID)) 
-
-// à finir et tester ( ! pas encore fait)
- .post('/newrecipe/',validate('body', recipeSchema), routerWrapper(recipeController.addNewRecipe))
+ .post('/newrecipe',validate('body',recipeSchema), routerWrapper(recipeController.addNewRecipe))
 
 
 

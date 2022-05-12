@@ -15,6 +15,7 @@ sqitch init ofood --engine pg
 sqitch add 1.init -n "structure projet"
 sqitch add 2.add.seeding -n "add.seeding"
 sqitch add 3.add.script_create_meals -n "3.add.script_create_meals"
+sqitch add 4.add.script_view_meals_by_userID -n "4.add.script_view_meals_by_userID"
 
 
 # je revert

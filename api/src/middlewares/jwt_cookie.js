@@ -121,7 +121,18 @@ const addJwtFeatures = (req, res, next) => {
   req.login = (user) => {
 
     const token = createJwtToken({ user });
+    
+    //ici on renvoie un cookie avec le jwt
     res.cookie('jwt', token);
+
+    // A faire ailleur Début de Modif 11/05 à la demande d'aleks
+    // res.json({
+    //   user_id:user.id,
+    //   token:token
+
+    // })
+
+
   }
 
   next();
