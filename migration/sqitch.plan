@@ -4,4 +4,5 @@
 1.init 2022-05-07T10:10:09Z Nicolas,,, <nicolas@FX705GE> # structure projet
 2.add.seeding 2022-05-07T10:10:10Z Nicolas,,, <nicolas@FX705GE> # add.seeding
 3.add.script_create_meals 2022-05-09T11:24:05Z Nicolas,,, <nicolas@FX705GE> # 3.add.script_create_meals
-4.add.script_view_meals_by_userID 2022-05-11T14:57:03Z Nicolas,,, <nicolas@FX705GE> # 4.add.script_view_meals_by_userID
+
+4.add.script_create_meals_version_2 2022-05-12T11:38:33Z Nicolas,,, <nicolas@FX705GE> # 4.add.script_create_meals_version_2

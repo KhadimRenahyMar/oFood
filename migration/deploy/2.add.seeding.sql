@@ -3,9 +3,9 @@
 BEGIN;
 
 INSERT INTO public.users(
-	id, email, password)
-	VALUES (1, 'test1','$2b$10$6AnJf3.f8bYM7Gb8LkFqXOkZWgYdyPeW6hCYSAx19Ima6NOEVW.bu'),
-	(2, 'test2','$2b$10$HicdyKNGWKlmlqf2dA2T4.97y187P2EkGuW2j0gCu/nbuuetus31i');
+	id, email, password,imc)
+	VALUES (1, 'test1','$2b$10$6AnJf3.f8bYM7Gb8LkFqXOkZWgYdyPeW6hCYSAx19Ima6NOEVW.bu',20),
+	(2, 'test2','$2b$10$HicdyKNGWKlmlqf2dA2T4.97y187P2EkGuW2j0gCu/nbuuetus31i',30);
 
 
 INSERT INTO public.recipes(

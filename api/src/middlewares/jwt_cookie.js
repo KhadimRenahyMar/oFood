@@ -18,10 +18,12 @@ const createJwtToken = ({ user = null}) => {
   const jwtToken = jwt.sign({ 
     sub: user.id.toString(),
     exp: Math.floor(Date.now() / 1000) + 5 
-  }, secret);
+  }, secret );
+
+  //{httpOnly:true}
+
   return jwtToken;
 }
-
 
 // Assignation de la méthode de création d'un token sur une clé createJwtToken 
 exports.createJwtToken = createJwtToken;
@@ -125,7 +127,7 @@ const addJwtFeatures = (req, res, next) => {
     //ici on renvoie un cookie avec le jwt
     res.cookie('jwt', token);
 
-    // A faire ailleur Début de Modif 11/05 à la demande d'aleks
+    //A faire ailleur Début de Modif 11/05 à la demande d'aleks
     // res.json({
     //   user_id:user.id,
     //   token:token
