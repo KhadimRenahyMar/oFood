@@ -68,20 +68,21 @@ const mealController = {
 
       // Etape 4 (limit avec random)
       // Soit on sélectionne les 21 ere recettes (return sous tableau), soit on fait un random de 21
+
       const profil_user ={
         users_id: 1,
       }
 
-     //  const result = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user(profil_user);
-
+       //const result = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user(profil_user);
 
       //on construit l'objet meals et on le passe à postNewMeals, (la 1er du 3 grp de 3 doit être 0 ) 
-      const meals_v2 ={
+
+      const meals_v3 ={
         start_date:'2022-05-10 06:56:30.513834+00',
         users_id: req.params.userId,
         recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34,27]}
     
-        const result = await mealsDataMapper.postNewMeals(meals);
+        const result = await mealsDataMapper.postNewMeals(meals_v3);
 
         res.status(201).json(result);
         
