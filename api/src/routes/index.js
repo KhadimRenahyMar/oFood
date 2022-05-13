@@ -18,17 +18,15 @@ const is_auth = require('../middlewares/authenticated')
 const auth_local_storage = require('../middlewares/auth_local_storage') 
 
 
+
 // Adding subrouters
 router_index.use('/api/users',userRoutes);
 router_index.use('/api/recipes',recipeRoutes);
 router_index.use('/api/specific_diet',specificDietRoutes);
 router_index.use('/api/meals',mealRoutes);
 
-
 router_index.get('/api',auth_local_storage,  (req, res) => {
-
     res.status(200).json({message :'API run'});
-
 });
 
 

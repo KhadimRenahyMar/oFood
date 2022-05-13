@@ -53,7 +53,6 @@ const usersController = {
     //temporaire pour gestion token par header sur authorization
     res.status(200).json(returnedUser);
 
-
   },
 
 
