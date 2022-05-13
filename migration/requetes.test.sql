@@ -51,3 +51,41 @@ where users.id = 1;
     "ingredient_desc":"<ul><li>1 cabillaud (frais), 200 g Petits pois (frais), 1 tran. Lard ,1/4 citron jaune.</li></ul>"
     
 }
+
+
+
+
+
+
+// FCT OK
+DECLARE   
+    i INT;
+    j INT;
+    TEMP timestamptz := meals_start_date;
+
+    BEGIN
+
+    FOR i IN 1..7 LOOP
+
+        FOR j IN 1..3 LOOP
+
+        INSERT INTO meals (start_date, users_id, recipes_id) 
+                    VALUES( TEMP,meals_users_id ,meals_recipesId[(i*j)] );
+
+         END LOOP;
+
+        -- avt de sortir on ajoute 1 à la date du jour
+         TEMP := TEMP + INTERVAL '1 DAYS';
+		 
+    END LOOP;
+
+	RETURN QUERY
+    SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
+     FROM "users"
+     join meals on meals.users_id=users.id
+     join recipes on recipes.id = meals.recipes_id
+     where users.id = meals_users_id
+     GROUP BY users.id,meals.start_date ;
+
+	END;
+$$ LANGUAGE plpgsql;

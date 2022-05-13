@@ -27,7 +27,7 @@ sqitch revert docker
 # je deploy
 #sqitch deploy db:pg:mydb
 #
-sqitch deploy docker
+sqitch deploy docker 3.add.script_create_meals
 
 #sqitch deploy heroku
 # sqitch deploy heroku 2.add.seeding

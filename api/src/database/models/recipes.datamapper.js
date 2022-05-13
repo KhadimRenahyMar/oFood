@@ -45,7 +45,7 @@ const recipesDataMapper = {
     return results.rows[0];
   },
 
-  async getRecipes_With_ImcMax_and_Specific_diet_for_user(profil_user){
+  async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(profil_user){
 
       // SELECT
       // users.id,
@@ -66,20 +66,65 @@ const recipesDataMapper = {
              join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
              join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
              join recipes on recipes.id = specific_diet_has_recipes.recipes_id
-             where users.id = $1 and users.imc<=recipes.max_imc
+             where users.id = $1 and users.imc<=recipes.max_imc and recipes.type =0
              ORDER BY RANDOM() LIMIT 21;`,
              
         values: [profil_user.users_id],
       };
+
       const results = await client.query(query);
+      
+    //si on a pas de recettes qui correspondent au petit dej on retourne 0
       if (!results.rowCount) {
-        throw new APIError("No recipe saved yet", 404);
+        return 0;
       }
+
       return results.rows;
 
-
-
   },
+
+  async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(profil_user){
+
+    // SELECT
+    // users.id,
+    // recipes.id
+    // FROM public.users
+    // join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
+    // join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
+    // join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
+    // join recipes on recipes.id = specific_diet_has_recipes.recipes_id
+    // where users.id = 1 and users.imc<=recipes.max_imc;
+    
+    const query = {
+    text: `SELECT
+           users.id,
+           recipes.id
+           FROM public.users
+           join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
+           join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
+           join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
+           join recipes on recipes.id = specific_diet_has_recipes.recipes_id
+           where users.id = $1 and users.imc<=recipes.max_imc and  ( recipes.type =1 or recipes.type =2)
+           ORDER BY RANDOM() LIMIT 21;`,
+           
+      values: [profil_user.users_id],
+    };
+
+    const results = await client.query(query);
+
+    //si on a pas de recettes qui correspondent on retourne 0
+    if (!results.rowCount) {
+        return 0;
+    }
+
+    return results.rows;
+
+},
+
+
+
+
+
 
   async postNewRecipe(recipe) {
     const query = {

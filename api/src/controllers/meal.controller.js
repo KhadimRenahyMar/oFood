@@ -73,19 +73,97 @@ const mealController = {
         users_id: 1,
       }
 
-       //const result = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user(profil_user);
+      // pour test à refactoriser sur la même fonction en passant un type
+
+      let recipes_temp = [];
+
+      for (let i = 0; i < 21; i++) {
+        recipes_temp.push(0)
+      }
+
+      const recipes_type_0_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(profil_user);
+
+      debug('recipes_type_0_for_user',recipes_type_0_for_user )
+
+      if (!recipes_type_0_for_user == 0) {
+
+        let first_time = true 
+        
+        for (let i = 0; i < recipes_temp.length; i++) {
+          
+           if (first_time) {
+            
+            if (recipes_type_0_for_user[0] !== undefined) {
+              recipes_temp[0] = recipes_type_0_for_user[0].id
+            }
+
+            first_time= false;
+
+            continue;
+
+           }
+
+          if (recipes_type_0_for_user[i] !== undefined) {
+            recipes_temp[i+3] = recipes_type_0_for_user[i].id;
+
+          }
+          
+        }
+      }
+
+      debug('recipes_temp apres recherche petit dej',recipes_temp )
+
+      const recipes_type_2_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(profil_user);
+
+      debug('recipes_type_2_for_user',recipes_type_2_for_user )
+
+      if (!recipes_type_2_for_user == 0) {
+
+        let first_time = true 
+
+        for (let i = 0; i < recipes_temp.length; i+=2) {
+  
+          if (first_time) {
+      
+            if (recipes_type_2_for_user[1] !== undefined) {
+              recipes_temp[1] = recipes_type_2_for_user[1].id;
+            }
+            
+            first_time= false;
+            
+            continue;
+            
+          }
+          
+          if (recipes_type_2_for_user[i] !== undefined) {
+            recipes_temp[i+1] = recipes_type_2_for_user[i].id;
+          }
+
+        }
+      }
+
+      debug('recipes_temp apres recherche type 1 ou 2',recipes_temp )
+
+     //res.status(201).json('recipes_for_user');
 
       //on construit l'objet meals et on le passe à postNewMeals, (la 1er du 3 grp de 3 doit être 0 ) 
 
+      // en post http://localhost:3001/api/meals/1/postnewmeals
       const meals_v3 ={
         start_date:'2022-05-10 06:56:30.513834+00',
         users_id: req.params.userId,
         recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34,27]}
-    
-        const result = await mealsDataMapper.postNewMeals(meals_v3);
 
-        res.status(201).json(result);
+      // const meals_v3 ={
+      //   start_date:'2022-05-10 06:56:30.513834+00',
+      //   users_id: req.params.userId,
+      //   recipes_id: recipes_temp }
+    
+      const result = await mealsDataMapper.postNewMeals(meals_v3);
+
+      res.status(201).json(result);
         
+
       },
 
 

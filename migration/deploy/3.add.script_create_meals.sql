@@ -7,7 +7,7 @@ ALTER TABLE IF EXISTS public.users
 
 
 ALTER TABLE IF EXISTS public.recipes
-    ALTER COLUMN id RESTART SET START 38;
+    ALTER COLUMN id RESTART SET START 50;
 
 
 ALTER TABLE IF EXISTS public.meals
@@ -15,7 +15,7 @@ ALTER TABLE IF EXISTS public.meals
 
 
 ALTER TABLE IF EXISTS public.users_create_recipes
-    ALTER COLUMN id RESTART SET START 6;
+    ALTER COLUMN id RESTART SET START 11;
 
 
 ALTER TABLE IF EXISTS public.specific_diet
@@ -23,7 +23,7 @@ ALTER TABLE IF EXISTS public.specific_diet
 
 
 ALTER TABLE IF EXISTS public.specific_diet_has_recipes
-    ALTER COLUMN id RESTART SET START 6;
+    ALTER COLUMN id RESTART SET START 7;
 
 
 ALTER TABLE IF EXISTS public.users_choose_specific_diet
