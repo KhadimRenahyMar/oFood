@@ -152,7 +152,7 @@ const mealController = {
       const meals_v3 ={
         start_date:'2022-05-10 06:56:30.513834+00',
         users_id: req.params.userId,
-        recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34,27]}
+        recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34]}
 
       // const meals_v3 ={
       //   start_date:'2022-05-10 06:56:30.513834+00',
@@ -160,9 +160,7 @@ const mealController = {
       //   recipes_id: recipes_temp }
     
       const result = await mealsDataMapper.postNewMeals(meals_v3);
-
       res.status(201).json(result);
-        
 
       },
 
