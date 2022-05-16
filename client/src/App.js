@@ -5,15 +5,32 @@ import { useState, useEffect } from 'react';
 function App() {
   const [Msg, SetfetchMsg] = useState();
 
+  //const FETCH_URL = 'http://localhost:3001/api/users/login'
+
   useEffect(() => {
     async function fetchMsg() {
       try {
-
-        const response = await fetch('/api/message');
+        
+        const response = await fetch('api/users/login', {
+          method: "POST",
+          body: JSON.stringify({
+            
+            "email": "test1",
+            "password":"test1"
+            
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        
         if (response.ok) {
-          console.log(response);
-          SetfetchMsg(await response.json());
-        }
+          
+            SetfetchMsg(await response.json());
+            
+        } 
+
+
       } catch (e) {
         console.log(e);
       }
@@ -36,3 +53,6 @@ function App() {
 }
 
 export default App;
+
+
+

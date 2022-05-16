@@ -17,6 +17,7 @@ const createJwtToken = ({ user = null}) => {
   //Methode synchrone, si pas de passage de méthode de callback
   const jwtToken = jwt.sign({ 
     sub: user.id.toString(),
+    // Math.floor(Date.now() / 1000)- > ~ 1seconde, donc + 5 = durée de 5 secondes( 60*60 1min)
     exp: Math.floor(Date.now() / 1000) + 5 
   }, secret );
 

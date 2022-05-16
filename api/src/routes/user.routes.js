@@ -20,6 +20,7 @@ usersRouter
    * @returns {String} 200 - success response
    * @returns {APIError} 404 - fail response
    */
+
 .post('/signup',validate('body',userSchema),routerWrapper(usersController.postNewUser))
   /**
    * Log the user comparing entered credentails with hashed datas in database,
@@ -30,6 +31,7 @@ usersRouter
    * @returns {User} 200 - success response
    * @returns {APIError} 404 - fail response
    */
+
    //.post('/login', validate('body',userSchema), routerWrapper(usersController.logUser))
    .post('/login', validate('body',userSchema), routerWrapper(usersController.logUser))
     /**
@@ -39,6 +41,7 @@ usersRouter
    * @return {String} 200 - success response
    * @return {APIError} 404 - fail response
    */
+
    .get('/logout', routerWrapper(usersController.logOutUser))
        /**
    * Return users listing
@@ -49,20 +52,9 @@ usersRouter
    */
   .get('/', routerWrapper(usersController.getUsers))
 
+  .patch('/:id',routerWrapper(usersController.updateProfilByUserId))
+
 
 usersRouter.use(handleError);
 
 module.exports = usersRouter;
-
-// const response = await fetch(BASE_URL, {
-//   method: 'POST',
-//   body: JSON.stringify(userForm),
-//   headers: {
-//       'Content-Type': 'application/json'
-//   }
-// });
-// if (response.ok) {
-//   return response.json();
-// } else {
-//   throw await response.json();
-// }

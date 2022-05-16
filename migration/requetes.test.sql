@@ -89,3 +89,27 @@ DECLARE
 
 	END;
 $$ LANGUAGE plpgsql;
+
+
+
+
+          // pour controle
+          // recipes_temp[1] = recipes_type_2_for_user[0].id;
+          // recipes_temp[2] = recipes_type_2_for_user[1].id;
+
+          // recipes_temp[4] = recipes_type_2_for_user[2].id;
+          // recipes_temp[5] = recipes_type_2_for_user[3].id;
+
+          // recipes_temp[7] = recipes_type_2_for_user[4].id;
+          // recipes_temp[8] = recipes_type_2_for_user[5].id;
+
+          // recipes_temp[10] = recipes_type_2_for_user[6].id;
+          // recipes_temp[11] = recipes_type_2_for_user[7].id;
+
+          // recipes_temp[13] = recipes_type_2_for_user[8].id;
+          // recipes_temp[14] = recipes_type_2_for_user[9].id;
+
+          // recipes_temp[16] = recipes_type_2_for_user[10].id;
+          // recipes_temp[17] = recipes_type_2_for_user[11].id;
+
+          // recipes_temp[19] = recipes_type_2_for_user[12].id;

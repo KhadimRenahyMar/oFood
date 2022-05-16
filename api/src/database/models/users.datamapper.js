@@ -68,7 +68,34 @@ const usersDataMapper = {
     return results.rows[0];
   },
 
-  /**
+
+  async findUserPerIdAndUpdate(user){
+
+    //si on arrive ici c'est qu'on a un token valide
+
+    let {id, firstname, lastname, profil_pic, sex, height, weight, imc, } = user;
+
+    const query = {
+      text : `UPDATE "users"
+              SET firstname=$1, lastname=$2, sex=$3, height=$4, weight=$5, imc=$6, "updatedAt"=now()
+              WHERE id=$7 RETURNING *;`,
+      values:[firstname, lastname, sex, height, weight, imc, id],
+    }
+
+    const results = await client.query(query);
+
+    if(!results.rowCount){
+      throw new APIError ("This account doesn't exist.", 404);
+    };
+
+    debug('user updaté :', results.rows[0])
+
+    return results.rows[0];
+
+  },
+
+
+/**
    * Return a list containing all registered users
    * @returns {ARRAY} of pseudos String
    * @throws {APIError} if the table user is empty

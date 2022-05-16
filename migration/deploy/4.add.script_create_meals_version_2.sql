@@ -2,6 +2,9 @@
 
 BEGIN;
 
+
+
+
 CREATE OR REPLACE FUNCTION populate_meals_v2(meals_v2 json) RETURNS TABLE( id INT,start_date_meals timestamptz, recipesOfUser json) AS $$
 
    DECLARE   
@@ -15,8 +18,8 @@ CREATE OR REPLACE FUNCTION populate_meals_v2(meals_v2 json) RETURNS TABLE( id IN
 
     BEGIN
 
-    TEMP      := meals_v2->>'start_date'::timestamptz;
-    userId    := meals_v2->>'users_id'::int;
+    TEMP      := meals_v2->>'start_date';
+    userId    := meals_v2->>'users_id';
     recipesId := ARRAY(select regexp_split_to_table(replace(replace(meals_v2->>'recipes_id','[',''),']',''),','))::INT[];
 
 

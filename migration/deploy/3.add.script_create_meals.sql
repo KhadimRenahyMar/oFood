@@ -7,7 +7,7 @@ ALTER TABLE IF EXISTS public.users
 
 
 ALTER TABLE IF EXISTS public.recipes
-    ALTER COLUMN id RESTART SET START 50;
+    ALTER COLUMN id RESTART SET START 446;
 
 
 ALTER TABLE IF EXISTS public.meals
@@ -23,7 +23,7 @@ ALTER TABLE IF EXISTS public.specific_diet
 
 
 ALTER TABLE IF EXISTS public.specific_diet_has_recipes
-    ALTER COLUMN id RESTART SET START 7;
+    ALTER COLUMN id RESTART SET START 86;
 
 
 ALTER TABLE IF EXISTS public.users_choose_specific_diet
@@ -31,20 +31,25 @@ ALTER TABLE IF EXISTS public.users_choose_specific_diet
 
 
 
-CREATE OR REPLACE FUNCTION populate_meals(meals json) RETURNS meals AS $$
-
- -- test fct version 1
-INSERT INTO meals
-(start_date, users_id, recipes_id)
-VALUES(
-(meals->>'start_date')::timestamp,
-(meals->>'users_id')::int,
-(meals->>'recipes_id')::int
-
-) RETURNING *;
 
 
-$$ LANGUAGE sql STRICT;
+
+
+-- Finalement cette fct ne sert pas (laissé pour exemple de syntaxe en language sql  
+
+-- CREATE OR REPLACE FUNCTION populate_meals(meals json) RETURNS meals AS $$
+
+--  -- test fct version 1
+-- INSERT INTO meals
+-- (start_date, users_id, recipes_id)
+-- VALUES(
+-- (meals->>'start_date')::timestamp,
+-- (meals->>'users_id')::int,
+-- (meals->>'recipes_id')::int
+
+-- ) RETURNING *;
+
+-- $$ LANGUAGE sql STRICT;
 
 
 

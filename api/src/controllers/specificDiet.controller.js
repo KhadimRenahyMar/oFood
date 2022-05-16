@@ -18,6 +18,7 @@ const specificDietController = {
         const result = await specificsDietDataMapper.postNewSpecificDiet(specific_diet);
         res.status(201).json(result);
       },
+      
 
 };
 

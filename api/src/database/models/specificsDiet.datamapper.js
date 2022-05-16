@@ -1,6 +1,7 @@
 const client = require('../client_pg');
 const debug = require('debug')("SpecificDiet_DataMapper");
 const APIError = require('../../Errors/APIError');
+const { object } = require('joi');
 
 
 const specificDietDataMapper = {
@@ -27,6 +28,41 @@ const specificDietDataMapper = {
         return results.rows[0];
       },
 
+      async getSpecificDietByUserID(userId){
+
+        const query = { 
+          text: `SELECT users.id, specific_diet.name FROM "users"
+          join users_choose_specific_diet on users_choose_specific_diet.users_id = users.id
+          join specific_diet on users_choose_specific_diet.id =specific_diet.id
+          where users.id = $1
+		      GROUP BY users.id, specific_diet.name;`,
+          values: [userId],
+        };
+
+      
+        const results = await client.query(query);
+        if(!results.rowCount){
+          return 0
+        };
+        return results;
+      },
+
+
+      async deleteSpecificDietByUserID(userId){
+
+        const query = { 
+          text: `DELETE FROM "users_choose_specific_diet" WHERE users_id=$1;`,
+          values: [userId],
+        };
+        const results = await client.query(query);
+
+        if(!results.rowCount){
+          throw new APIError ("User have not specific diet saved in base.", 404)
+        };
+        return results;
+      },
+
+
       async postNewSpecificDiet(specific_diet){
 
         const query = {
@@ -36,7 +72,62 @@ const specificDietDataMapper = {
         await client.query(query);
         return 'The specific diet has been saved into database';
       },
-  
+
+      async postNewSpecificDiet_Of_userID(user){
+
+        //En attendant de coder un fct, 
+        //qui s'occupe du traitement du régime spé  avec sa création si il n'existe pas,
+        // puis remplissage de la table pivot
+        let i;
+
+
+       for (const iterator of user.intolerances) {
+
+            switch (iterator) {
+              case 'sans lactose':
+                i=1;
+                break;
+
+              case 'sans gluten':
+                i=2;
+                break;
+
+              case 'vegetarien':
+                i=3;
+                break;
+
+              case 'vegetarien':
+                i=4;
+                break;
+
+              case 'vegetalien':
+                i=5;
+                break;
+
+              case 'sans porc':
+                i=6;
+                break;
+
+            }
+
+
+          const query = {
+            text: `INSERT INTO "users_choose_specific_diet"(users_id, specific_diet_id)
+                   VALUES ($1, $2);`,
+            values: [user.id,i],
+          };
+          
+          const results = await client.query(query);
+
+          if(!results.rowCount){
+            throw new APIError ("erreur : users_choose_specific_diet not saved in base.", 404)
+          };
+
+        }
+        
+
+
+      },
 
 }
 

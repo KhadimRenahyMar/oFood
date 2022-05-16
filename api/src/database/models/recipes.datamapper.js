@@ -45,7 +45,7 @@ const recipesDataMapper = {
     return results.rows[0];
   },
 
-  async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(profil_user){
+  async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(usersId){
 
       // SELECT
       // users.id,
@@ -69,7 +69,7 @@ const recipesDataMapper = {
              where users.id = $1 and users.imc<=recipes.max_imc and recipes.type =0
              ORDER BY RANDOM() LIMIT 21;`,
              
-        values: [profil_user.users_id],
+        values: [usersId],
       };
 
       const results = await client.query(query);
@@ -83,7 +83,7 @@ const recipesDataMapper = {
 
   },
 
-  async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(profil_user){
+  async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(usersId){
 
     // SELECT
     // users.id,
@@ -107,7 +107,7 @@ const recipesDataMapper = {
            where users.id = $1 and users.imc<=recipes.max_imc and  ( recipes.type =1 or recipes.type =2)
            ORDER BY RANDOM() LIMIT 21;`,
            
-      values: [profil_user.users_id],
+      values: [usersId],
     };
 
     const results = await client.query(query);
