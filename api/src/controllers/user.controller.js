@@ -6,7 +6,6 @@ const APIError = require('../Errors/APIError');
 //temporaire
 const jwt=require('jsonwebtoken')
 
-
 const usersController = {
   async postNewUser(req, res) {
 
@@ -18,7 +17,6 @@ const usersController = {
       debug('User passé à la fonction req.login :',user)
 
       req.login(user);
-
     
      // debug(user)
      res.status(201).json(user);
@@ -36,13 +34,15 @@ const usersController = {
     //Ici 2 cas 
     const user = req.body
     const result = await usersDataMapper.findUserPerEmail(user);
+
+
     const returnedUser = {
                           id:result.id, 
                           email: result.email, 
                           token: jwt.sign(
-                            {userId:user._id},       
+                            {userId:result.id},       
                             'RANDOM_TOKEN_SECRET',  
-                            {expiresIn:'30s'})
+                            {expiresIn:'60s'})
                           }      
 
     debug('User récupéré en BDD :', result)
@@ -51,6 +51,7 @@ const usersController = {
     // A réactiver pour gestion token par cookie ne pas oublier de commenter la ligne 54
     // res.status(200).json(result);
     
+    //debug('returnedUser:', returnedUser)
     //temporaire pour gestion token par header sur authorization
     res.status(200).json(returnedUser);
 

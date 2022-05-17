@@ -145,21 +145,14 @@ const mealController = {
 
       }
 
-      debug('recipes_temp apres recherche type 1 ou 2',recipes_temp )
+      //debug('recipes_temp apres recherche type 1 ou 2',recipes_temp )
+      // start_date: req.body.start_date,
+      // start_date: '2022-05-10 06:56:30.513834+00',
+      // recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34]
 
-
-      //on construit l'objet meals et on le passe à postNewMeals, 
-      //(la 1er du 3 grp de 3 doit être de typ 0 (petit dèj))
-      // const meals_v3 ={
-      //   start_date:'2022-05-10 06:56:30.513834+00',
-      //   users_id: req.params.userId,
-      //   recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34]}
-
-
-      //start_date: req.body.start_date,
       const meals ={
-        start_date: '2022-05-10 06:56:30.513834+00',
-        users_id: req.params.userId,
+        start_date: req.body.start_date,
+        users_id: parseInt (req.params.userId,10),
         recipes_id: recipes_temp }
 
         debug('meals_v3',meals )
@@ -167,6 +160,7 @@ const mealController = {
       const result = await mealsDataMapper.postNewMeals(meals);
       res.status(201).json(result);
      
+      
   },
 
 

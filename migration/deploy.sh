@@ -27,6 +27,7 @@ sqitch revert docker
 # je deploy
 #sqitch deploy db:pg:mydb
 #
+#
 #sqitch deploy docker 4.add.script_create_meals_version_2
 sqitch deploy docker
 

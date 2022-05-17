@@ -48,12 +48,20 @@ const mealsDataMapper = {
   
   async postNewMeals(meals) {
 
+    //pour le test fct version 2
+    // const query = {
+    //   text: `SELECT * FROM populate_meals_v2($1);`,
+    //   values: [meals],
+    // };
 
      //pour le test fct version 3
     const query = {
       text: `SELECT * FROM populate_meals_v3($1,$2,$3);`,
       values: [meals.start_date,meals.users_id,meals.recipes_id],
     };
+
+
+
 
     const results= await client.query(query);
     

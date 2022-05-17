@@ -7,7 +7,9 @@ const app = express();
 exports.app = app;
 
 
+
 // Setting CORS
+
 const cors = require('cors');
 const corsOptions = {
   Credential:true,

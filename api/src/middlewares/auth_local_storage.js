@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken'); //nécessaire pour vérifier les tokens
+const debug = require('debug')('Auth_local_storage');
 
 
 module.exports =(req, res, next)=>{
@@ -8,6 +9,9 @@ module.exports =(req, res, next)=>{
         // va nous retourner un tableau avec bearer en 1er elt et le token en 2ème// on prend seulement le token 
         const token = req.headers.authorization.split(' ')[1]; //si ça plante ça enverra une erreur atenntion au z de authorization
         const decodedToken=jwt.verify(token,'RANDOM_TOKEN_SECRET')// on doit lui donner en arg le token, ainsi que la clé secrete pour la vérif
+
+        //debug('decodedToken',decodedToken)
+
         const userId = decodedToken.userId;
 
         //Donc si on à un userId dans le corps la requête, on veut vérifier qu'il correspond à celui encrypter dans le Token
