@@ -14,7 +14,7 @@ const mealController = {
 
 
       async postNewMeals(req,res){
-        debug('appel méthode post new meals')
+      //  debug('appel méthode post new meals')
 
       // pour le test fct version 2
       // On fait Etape 1 & 2 & 3en même tps
@@ -128,9 +128,11 @@ const mealController = {
         users_id: parseInt (req.params.userId,10),
         recipes_id: recipes_temp }
 
-        debug('meals_v3',meals )
+      //  debug('meals_v3',meals )
 
       const result = await mealsDataMapper.postNewMeals(meals);
+
+      debug('result',result )
       res.status(201).json(result);
      
       
