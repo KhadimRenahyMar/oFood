@@ -68,14 +68,14 @@ services:
 
 
 
-  reverse-proxy:
-    build:
-      context: ./reverse-proxy
-      dockerfile: Dockerfile.dev
-    ports:
-      - 80:80
-    depends_on:
-      - postgresql
+  # reverse-proxy:
+  #   build:
+  #     context: ./reverse-proxy
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - postgresql
 
 
 
