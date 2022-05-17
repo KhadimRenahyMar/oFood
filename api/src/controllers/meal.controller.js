@@ -156,15 +156,15 @@ const mealController = {
       //   recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34]}
 
 
-
-      const meals_v3 ={
-        start_date: req.body.start_date,
+      //start_date: req.body.start_date,
+      const meals ={
+        start_date: '2022-05-10 06:56:30.513834+00',
         users_id: req.params.userId,
         recipes_id: recipes_temp }
 
-        debug('meals_v3',meals_v3 )
+        debug('meals_v3',meals )
 
-      const result = await mealsDataMapper.postNewMeals(meals_v3);
+      const result = await mealsDataMapper.postNewMeals(meals);
       res.status(201).json(result);
      
   },

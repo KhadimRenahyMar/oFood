@@ -45,7 +45,7 @@ const mealsDataMapper = {
 
   },
 
-
+  
   async postNewMeals(meals) {
 
 
@@ -65,6 +65,7 @@ const mealsDataMapper = {
     return results.rows;
 
   },
+
 };
 
 
