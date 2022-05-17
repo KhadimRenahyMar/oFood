@@ -14,7 +14,7 @@ CREATE TABLE "users" (
   "firstname" TEXT DEFAULT NULL,
   "lastname" TEXT DEFAULT NULL,
   "is_admin_role" BOOLEAN DEFAULT false,
-  "profil_pic" TEXT DEFAULT NULL,
+  "profil_is_completed" BOOLEAN DEFAULT false,
   "sex" TEXT DEFAULT NULL,
   "height" INTEGER DEFAULT NULL,
   "weight" INTEGER DEFAULT NULL,

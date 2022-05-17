@@ -38,7 +38,8 @@ const usersController = {
 
     const returnedUser = {
                           id:result.id, 
-                          email: result.email, 
+                          email: result.email,
+                          profil_is_completed:result.profil_is_completed,
                           token: jwt.sign(
                             {userId:result.id},       
                             'RANDOM_TOKEN_SECRET',  
@@ -85,6 +86,7 @@ const usersController = {
       height:Obj_UpdateUser.height,
       weight:Obj_UpdateUser.weight,
       imc:Obj_UpdateUser.imc,
+      profil_is_completed:true,
       intolerances:Obj_UpdateUser.intolerances
     }
 
@@ -99,9 +101,13 @@ const usersController = {
     //on met à jour les autres infos du user
     const result_UpdateUserId = await usersDataMapper.findUserPerIdAndUpdate(user);
 
+    const returnedUser = {
+      id:result_UpdateUserId.id, 
+      email: result_UpdateUserId.email,
+      profil_is_completed:result_UpdateUserId.profil_is_completed
+      }      
 
-
-    res.status(200).json('update ok');
+    res.status(200).json(returnedUser);
 
   }
 

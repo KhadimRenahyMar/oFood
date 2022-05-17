@@ -61,8 +61,6 @@ const mealsDataMapper = {
     };
 
 
-
-
     const results= await client.query(query);
     
     if(!results.rowCount){

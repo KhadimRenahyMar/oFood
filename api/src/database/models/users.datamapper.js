@@ -32,7 +32,7 @@ const usersDataMapper = {
   
   async findUserPerEmail(user) {
     const query = {
-      text : `SELECT id, email, is_admin_role, password FROM "users"
+      text : `SELECT id, email, profil_is_completed, password FROM "users"
               WHERE email = $1`,
       values:[user.email],
     }
@@ -73,13 +73,13 @@ const usersDataMapper = {
 
     //si on arrive ici c'est qu'on a un token valide
 
-    let {id, firstname, lastname, profil_pic, sex, height, weight, imc, } = user;
+    let {id, firstname, lastname, profil_pic, sex, height, weight, imc,profil_is_completed } = user;
 
     const query = {
       text : `UPDATE "users"
-              SET firstname=$1, lastname=$2, sex=$3, height=$4, weight=$5, imc=$6, "updatedAt"=now()
-              WHERE id=$7 RETURNING *;`,
-      values:[firstname, lastname, sex, height, weight, imc, id],
+              SET firstname=$1, lastname=$2, sex=$3, height=$4, weight=$5, imc=$6, profil_is_completed=$7,"updatedAt"=now()
+              WHERE id=$8 RETURNING *;`,
+      values:[firstname, lastname, sex, height, weight, imc,profil_is_completed, id],
     }
 
     const results = await client.query(query);
