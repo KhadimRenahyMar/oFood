@@ -24,8 +24,16 @@ router_index.use('/api/specific_diet',specificDietRoutes);
 router_index.use('/api/meals',mealRoutes);
 
 
-router_index.get('/api/message',is_auth,  (req, res) => {
+
+router_index.get('/api/message1',is_auth,  (req, res) => {
     res.status(200).json({message :'API run'});
+});
+
+
+router_index.get('/api/message2',  (req, res) => {
+
+    res.status(200).json("hello depuis le back");
+
 });
 
 router_index.get('/api',auth_local_storage,  (req, res) => {
@@ -33,13 +41,6 @@ router_index.get('/api',auth_local_storage,  (req, res) => {
 });
 
 
-
-
-// router_index.get('/api/message',  (req, res) => {
-
-//     res.status(200).json("hello depuis le back");
-
-// });
 
 
 
