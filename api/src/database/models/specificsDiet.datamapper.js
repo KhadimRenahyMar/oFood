@@ -49,17 +49,21 @@ const specificDietDataMapper = {
 
 
       async deleteSpecificDietByUserID(userId){
-
+        // debug(`************ ici on entre dans deleteSpecificDietByUserID`);
+        
         const query = { 
           text: `DELETE FROM "users_choose_specific_diet" WHERE users_id=$1;`,
           values: [userId],
         };
         const results = await client.query(query);
+        // debug('results toto:', results);
 
-        if(!results.rowCount){
-          throw new APIError ("User have not specific diet saved in base.", 404)
-        };
-        return results;
+        // if(!results.rowCount){
+        //   return true;
+        //   //   throw new APIError ("User have not specific diet saved in base.", 404)
+        // };
+        
+        return true;
       },
 
 

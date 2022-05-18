@@ -10,4 +10,4 @@ GET | /specific_diet | get all specific_diet already registered in databse (if a
 GET | /meals/:users_id | get all the meals possessed by the requested user  | Array of Objet _recipes_ (JSON) | Done
 POST| /recipes | Create a new recipes in database (if admin)| Return a feedback message (String) | Done
 POST| /specific_diet | Create a new specific_diet (if admin) in database| Return a feedback message (String) | Done
-POST | /meals/:users_id | Create all the meals od the week for one user  | Array of Objet _recipes_ (JSON) | Done
+POST | /meals/:users_id | Create all the meals of the week for one user  | Array of Objet _recipes_ (JSON) | Done

@@ -31,7 +31,7 @@ app.use(cookieParser());
 require('./middlewares/jwt_cookie');
 
 
-app.use(express.json())
+app.use(express.json()) // PRESENT ! 
 
 
 const router = require('./routes');

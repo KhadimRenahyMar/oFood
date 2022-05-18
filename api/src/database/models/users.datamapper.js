@@ -32,11 +32,12 @@ const usersDataMapper = {
   
   async findUserPerEmail(user) {
     const query = {
-      text : `SELECT id, email, profil_is_completed, password FROM "users"
+      text : `SELECT * FROM "users"
               WHERE email = $1`,
       values:[user.email],
     }
     const results = await client.query(query);
+    debug('que retourne til ? ', results)
     if(!results.rowCount){
       throw new APIError ("This account doesn't exist.", 404);
     };
@@ -71,8 +72,11 @@ const usersDataMapper = {
 
   async findUserPerIdAndUpdate(user){
 
+    debug("toto a la playa")
+
     //si on arrive ici c'est qu'on a un token valide
 
+    
     let {id, firstname, lastname, profil_pic, sex, height, weight, imc,profil_is_completed } = user;
 
     const query = {

@@ -37,14 +37,22 @@ const usersController = {
 
 
     const returnedUser = {
-                          id:result.id, 
-                          email: result.email,
-                          profil_is_completed:result.profil_is_completed,
-                          token: jwt.sign(
-                            {userId:result.id},       
-                            'RANDOM_TOKEN_SECRET',  
-                            {expiresIn:'60s'})
-                          }      
+            id:result.id, 
+            email: result.email,
+            profil_is_completed:result.profil_is_completed,
+            firstname:result.firstname,
+            lastname:result.lastname,
+            sex:result.sex,
+            height:result.height,
+            weight:result.weight,
+            imc:result.imc,
+            profil_is_completed:true,
+            // intolerances:Obj_UpdateUser.intolerances
+            token: jwt.sign(
+              {userId:result.id},       
+              'RANDOM_TOKEN_SECRET',  
+              {expiresIn:'24h'})
+            }      
 
     debug('User récupéré en BDD :', result)
     req.login(result);
@@ -78,6 +86,8 @@ const usersController = {
     const _id = req.params.id
     const Obj_UpdateUser = req.body
 
+    debug("NON MAIS OOOOH ?", req.body)
+
     const user ={
       id : req.params.id,
       firstname:Obj_UpdateUser.firstname,
@@ -91,10 +101,13 @@ const usersController = {
     }
 
     //En attendant de coder un fct (qui s'occupe du traitement du régime spé  avec sa création si il n'existe pas puis remplissage de la table pivot), on détruit les enregistrements de la table pivot pour ce user 
+    debug('**************** début du DELETE');
     const result_delete_SpecificDiet_Of_userID = await specificsDietDataMapper.deleteSpecificDietByUserID(user.id)
-
+    debug('fin du DELETE');
     //On reconstruit les liens sur la table pivot
     await specificsDietDataMapper.postNewSpecificDiet_Of_userID(user)
+
+    debug('WESH LE SUERRRRRR ??', user)
     
     const results_SpecificDiet_Of_userID = await specificsDietDataMapper.getSpecificDietByUserID(user.id)
 
@@ -104,7 +117,13 @@ const usersController = {
     const returnedUser = {
       id:result_UpdateUserId.id, 
       email: result_UpdateUserId.email,
-      profil_is_completed:result_UpdateUserId.profil_is_completed
+      profil_is_completed:result_UpdateUserId.profil_is_completed,
+      firstname:result_UpdateUserId.firstname,
+      lastname:result_UpdateUserId.lastname,
+      sex:result_UpdateUserId.sex,
+      height:result_UpdateUserId.height,
+      weight:result_UpdateUserId.weight,
+      imc:result_UpdateUserId.imc
       }      
 
     res.status(200).json(returnedUser);
