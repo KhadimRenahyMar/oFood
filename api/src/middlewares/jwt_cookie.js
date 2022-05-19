@@ -33,12 +33,12 @@ exports.createJwtToken = createJwtToken;
 // l'objectif de ce middleware c'est d'ajouter le user sur l'objet req et le rendre dispo ailleurs dans le backend
 const extractUserFromToken = async (req, res, next) => {
 
-   debug('req avt extraction jwt',req.cookies)
+   //debug('req avt extraction jwt',req.cookies)
 
   //Ici on regarde à la réception d'une requête entrante si il y a un token dans son cookie 
   const token = req.cookies.jwt;
 
-  debug('clé jwt du token',token)
+  //debug('clé jwt du token',token)
   //si pas de Token, l'utilisateur n'est considéré comme pas connecté
   if (token) {
 
@@ -46,28 +46,28 @@ const extractUserFromToken = async (req, res, next) => {
 
       //verif et décodage (recup du contenu du payload) -> Methode synchrone, si pas de passage de méthode de callback
 
-      debug('debut décodage')
+     // debug('debut décodage')
      let decodedToken = jwt.verify(token, secret, { ignoreExpiration: true });
 
      //fonction à debug plus tard
      //decodedToken = checkExpirationToken(decodedToken, res);
 
-     debug('Debug decodedToken : ',decodedToken)
-     debug('Debug decodedToken : ',decodedToken.sub)
+     //debug('Debug decodedToken : ',decodedToken)
+    // debug('Debug decodedToken : ',decodedToken.sub)
 
 
       const user = await usersDataMapper.findUserPerId(parseInt(decodedToken.sub,10));
 
       //Ici on doit récupérer notre objet avec le contenu du payload (),
       // ici un objet avec sub et id du user -> infos de la création token avec sign
-      debug('Debug user récupéré en bdd après recup id par décodage token ',user)
+     // debug('Debug user récupéré en bdd après recup id par décodage token ',user)
 
       if (user) {
 
         //ici on place le user sur une clé user de l'objet req, pour le rendre dispo sur les middleware suivant
         req.user = user;
 
-        debug(' Debug req.user ',req.user)
+       // debug(' Debug req.user ',req.user)
         next();
 
       } else {
@@ -86,7 +86,7 @@ const extractUserFromToken = async (req, res, next) => {
     }
   } else {
 
-     debug('On sort direct',token)
+    // debug('On sort direct',token)
 
     //Ici l'utilisateur n'est pas connecté, pas d'erreur on next simplement
     next();

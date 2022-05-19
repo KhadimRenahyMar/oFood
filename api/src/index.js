@@ -3,8 +3,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 
+// A réactiver pour gestion token par cookie 
 // on rend disdo la ref de app pour pouvoir l'utiliser dans notre middleware JWT
-exports.app = app;
+//exports.app = app;
 
 
 
@@ -21,17 +22,16 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// require('./database/client_pg')
 
+// A réactiver pour gestion token par cookie 
 //permet de positionner sur l'objet req une clé coockie (si il existe)
-app.use(cookieParser());
-
+//app.use(cookieParser())
 //a placer absolument après cookieParser, sinon on aura un pb de lecture de la clé cookies à l'interieur !
 //on execute ( applique )ici la cette couche jwt.
-require('./middlewares/jwt_cookie');
+//require('./middlewares/jwt_cookie');
 
 
-app.use(express.json()) // PRESENT ! 
+app.use(express.json()) 
 
 
 const router = require('./routes');

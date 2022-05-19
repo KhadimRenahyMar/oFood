@@ -8,7 +8,6 @@ const usersDataMapper = {
 
   async createUser(user) {
 
-      debug('Ajout en BDD d un user:',user);
 
       let {email, password} = user;
       const salt = await bcrypt.genSalt(10);
@@ -52,7 +51,7 @@ const usersDataMapper = {
   
   async findUserPerId(id){
 
-    debug('id récupéré depuis décodage token :', id)
+    //debug('id récupéré depuis décodage token :', id)
 
     const query = {
       text : `SELECT * FROM "users"
@@ -65,14 +64,14 @@ const usersDataMapper = {
     };
 
     //si on arrive ici c'est qu'on a un token valide, dans lequel on a récupéré l'id du user donc plus besoin de vérifier son MP avec bcrypt
-    debug('user récupéré par id :', id)
+    //debug('user récupéré par id :', id)
+
+
     return results.rows[0];
   },
 
 
   async findUserPerIdAndUpdate(user){
-
-    debug("toto a la playa")
 
     //si on arrive ici c'est qu'on a un token valide
 
@@ -109,6 +108,7 @@ const usersDataMapper = {
     const results = await client.query(query);
 
     debug(results.rows)
+    
     if(!results.rowCount){
       throw new APIError ("No user in BDD.", 404);
     };

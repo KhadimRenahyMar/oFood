@@ -11,17 +11,28 @@ const usersController = {
 
       //debug(req.body);
       const user = await usersDataMapper.createUser(req.body);
-      debug('User retourné après ajout en bdd :',user)
-      //const returnedUser = {email: user.email, is_admin_role: user.is_admin_role};
-      const returnedUser = {id: user.id};
-      debug('User passé à la fonction req.login :',user)
 
-      req.login(user);
-    
-     // debug(user)
-     res.status(201).json(user);
+      const returnedUser ={
+        id : user.id,
+        firstname:user.firstname,
+        lastname:user.lastname,
+        sex:user.sex,
+        height:user.height,
+        weight:user.weight,
+        imc:user.imc,
+        profil_is_completed:false,
+      }
+  
+
+       // A réactiver pour gestion token par cookie 
+      //req.login(user);
+      
+ 
+      debug('User retourné après ajout en bdd :',returnedUser)
+     res.status(201).json(returnedUser);
 
   },
+
 
   /**
    * Passes the pseudo and authorization level to the session
@@ -37,31 +48,29 @@ const usersController = {
 
 
     const returnedUser = {
-            id:result.id, 
-            email: result.email,
-            profil_is_completed:result.profil_is_completed,
-            firstname:result.firstname,
-            lastname:result.lastname,
-            sex:result.sex,
-            height:result.height,
-            weight:result.weight,
-            imc:result.imc,
-            profil_is_completed:true,
-            // intolerances:Obj_UpdateUser.intolerances
-            token: jwt.sign(
-              {userId:result.id},       
-              'RANDOM_TOKEN_SECRET',  
-              {expiresIn:'24h'})
-            }      
+    id:result.id, 
+    email: result.email,
+    profil_is_completed:result.profil_is_completed,
+    firstname:result.firstname,
+    lastname:result.lastname,
+    sex:result.sex,
+    height:result.height,
+    weight:result.weight,
+    imc:result.imc,
+    // intolerances:Obj_UpdateUser.intolerances
+    token: jwt.sign(
+      {userId:result.id},       
+      'RANDOM_TOKEN_SECRET',  
+      {expiresIn:'24h'})
+    }      
 
-    debug('User récupéré en BDD :', result)
-    req.login(result);
-
-    // A réactiver pour gestion token par cookie ne pas oublier de commenter la ligne 54
-    // res.status(200).json(result);
     
-    //debug('returnedUser:', returnedUser)
-    //temporaire pour gestion token par header sur authorization
+    // A réactiver pour gestion token par cookie 
+    //req.login(result);
+    
+    
+
+    debug('User récupéré en BDD après login :', returnedUser)
     res.status(200).json(returnedUser);
 
   },
@@ -72,7 +81,11 @@ const usersController = {
     if(!req.user){
       throw new APIError('You are not logged.')
     };
-    req.logout();
+
+   // A réactiver pour gestion token par cookie 
+   //req.logout();
+
+
     res.status(200).json('You have successfuly logged out.');
   },
   
@@ -115,16 +128,19 @@ const usersController = {
     const result_UpdateUserId = await usersDataMapper.findUserPerIdAndUpdate(user);
 
     const returnedUser = {
-      id:result_UpdateUserId.id, 
+      id:    result_UpdateUserId.id, 
       email: result_UpdateUserId.email,
-      profil_is_completed:result_UpdateUserId.profil_is_completed,
-      firstname:result_UpdateUserId.firstname,
-      lastname:result_UpdateUserId.lastname,
-      sex:result_UpdateUserId.sex,
-      height:result_UpdateUserId.height,
-      weight:result_UpdateUserId.weight,
-      imc:result_UpdateUserId.imc
+      profil_is_completed:  result_UpdateUserId.profil_is_completed,
+      firstname: result_UpdateUserId.firstname,
+      lastname:  result_UpdateUserId.lastname,
+      sex:  result_UpdateUserId.sex,
+      height: result_UpdateUserId.height,
+      weight:  result_UpdateUserId.weight,
+      imc:  result_UpdateUserId.imc,
+      test:'coucou'
       }      
+
+    debug('User récupéré en BDD après Update :', returnedUser)
 
     res.status(200).json(returnedUser);
 

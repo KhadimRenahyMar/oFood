@@ -4,8 +4,8 @@ module.exports = (req, res, next) => {
     
   if (req.isAuthenticated()) {
 
-    debug('User authentifié');
-    debug('User :',req.user)
+   // debug('User authentifié');
+  //  debug('User :',req.user)
     next();
 
   } else {
