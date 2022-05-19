@@ -57,6 +57,11 @@ const recipesDataMapper = {
       // join recipes on recipes.id = specific_diet_has_recipes.recipes_id
       // where users.id = 1 and users.imc<=recipes.max_imc;
       
+
+    //A ajouter si le user n'a pas de régime spécifique,
+    // alors on peut lui proposer tous les petits dej, qui match avec son imc
+
+
       const query = {
       text: `SELECT
              users.id,
@@ -94,6 +99,11 @@ const recipesDataMapper = {
     // join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
     // join recipes on recipes.id = specific_diet_has_recipes.recipes_id
     // where users.id = 1 and users.imc<=recipes.max_imc;
+
+
+    //A ajouter si le user n'a pas de régime spécifique,
+    // alors on peut lui proposer tous les dejeuners ou diners, qui matchent avec son imc
+
     
     const query = {
     text: `SELECT
