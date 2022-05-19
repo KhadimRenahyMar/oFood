@@ -16,32 +16,37 @@ const mealsDataMapper = {
    
     const query = {
      // text: `SELECT * FROM meals_by_user_id($1);`,
+     
+      text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
+      FROM "users"
+      join meals on meals.users_id=users.id
+      join recipes on recipes.id = meals.recipes_id
+      where users.id = $1
+     GROUP BY users.id,meals.start_date;`,
 
-     text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
-     FROM "users"
-     join meals on meals.users_id=users.id
-     join recipes on recipes.id = meals.recipes_id
-     where users.id = $1
-     GROUP BY users.id,meals.start_date ;`,
-
-    //  text: `SELECT users.id,meals.start_date,recipes.id,recipes.name,recipes.photo_link,recipes.meal_time,
-    //  recipes.max_imc,recipes.type,recipes.steps_desc,recipes.ingredient_desc
-    //  FROM public.users
+    // text: `SELECT users.id,meals.start_date,recipes.id,recipes.name,recipes.photo_link,recipes.meal_time,
+    // recipes.max_imc,recipes.type,recipes.steps_desc,recipes.ingredient_desc
+    // FROM public.users
     //  join meals on meals.users_id=users.id
     //  join recipes on recipes.id = meals.recipes_id
     //  where users.id = $1;`,
-
+     
+     // text: `SELECT * from users join meals on meals.users_id=users.id join recipes on recipes.id = meals.recipes_id WHERE users.id=$1;`
       values: [userId],
     };
 
 
     const results = await client.query(query);
 
-    debug('meals',results )
+    debug('meals getAllMealsByUserID ',results.rows )
+
     if (!results.rowCount) {
       throw new APIError("This user have not meals saved in base.", 404);
     }
     return results.rows;
+
+
+
 
   },
 
@@ -60,15 +65,15 @@ const mealsDataMapper = {
       values: [meals.start_date,meals.users_id,meals.recipes_id],
     };
 
-
-    const results= await client.query(query);
+    const results = await client.query(query);
     
     if(!results.rowCount){
       throw new APIError ("No recipe saved yet", 404);
     };
 
-   // debug('fct_sql',results.rows )
-    return results.rows;
+    debug('fct_sql',results.rows[0] )
+
+    return results.rows[0];
 
   },
 

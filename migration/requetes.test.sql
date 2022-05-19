@@ -21,6 +21,9 @@ SELECT * FROM public.users
 join meals on meals.users_id=users.id
 join recipes on recipes.id=meals.recipes_id
 where users.id = 1;
+
+
+
 --Restriction fields
 SELECT users.id,meals.start_date,recipes.id,recipes.name,recipes.photo_link,recipes.meal_time,
 recipes.max_imc,recipes.type,recipes.steps_desc,recipes.ingredient_desc

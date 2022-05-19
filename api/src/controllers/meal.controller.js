@@ -120,21 +120,28 @@ const mealController = {
 
       //debug('recipes_temp apres recherche type 1 ou 2',recipes_temp )
       // start_date: req.body.start_date,
+      // start_date: req.body.start_date,
       // start_date: '2022-05-10 06:56:30.513834+00',
       // recipes_id:[0,1,2,4,7,8,9,15,20,17,34,14,24,4,7,8,9,15,20,17,34]
 
       const meals ={
-        start_date: req.body.start_date,
+        start_date: '2022-05-19 06:56:30.513834+00',
         users_id: parseInt (req.params.userId,10),
         recipes_id: recipes_temp }
 
-      //  debug('meals_v3',meals )
+      debug('start_date avant passage à la fct:',req.body.start_date )
 
       const result = await mealsDataMapper.postNewMeals(meals);
 
-      debug('result',result )
-      res.status(201).json(result);
-     
+      const result_getAllMealsByUserID = await mealsDataMapper.getAllMealsByUserID(parseInt (req.params.userId,10))
+
+      
+
+      debug('result retour des meals',result )
+      debug('resultTest:', result_getAllMealsByUserID);
+
+      res.status(201).json(result_getAllMealsByUserID);
+    
       
   },
 

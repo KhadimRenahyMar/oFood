@@ -137,7 +137,6 @@ const usersController = {
       height: result_UpdateUserId.height,
       weight:  result_UpdateUserId.weight,
       imc:  result_UpdateUserId.imc,
-      test:'coucou'
       }      
 
     debug('User récupéré en BDD après Update :', returnedUser)

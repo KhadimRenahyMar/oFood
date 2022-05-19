@@ -108,7 +108,7 @@ const usersDataMapper = {
     const results = await client.query(query);
 
     debug(results.rows)
-    
+
     if(!results.rowCount){
       throw new APIError ("No user in BDD.", 404);
     };
