@@ -55,11 +55,10 @@ usersRouter
    * @returns {String} 200 - success response
    * @returns {APIError} 404 - fail response
    */
-  .get('/', routerWrapper(usersController.getUsers))
+
+  .get('/:id',auth_local, routerWrapper(usersController.getUsersById))
 
   .patch('/:id',auth_local,routerWrapper(usersController.updateProfilByUserId))
-
-
 
 
 usersRouter.use(handleError);

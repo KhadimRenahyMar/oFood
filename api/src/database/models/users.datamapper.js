@@ -64,7 +64,7 @@ const usersDataMapper = {
     };
 
     //si on arrive ici c'est qu'on a un token valide, dans lequel on a récupéré l'id du user donc plus besoin de vérifier son MP avec bcrypt
-    //debug('user récupéré par id :', id)
+    debug('user récupéré par id :', id)
 
 
     return results.rows[0];

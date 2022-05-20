@@ -90,8 +90,8 @@ const usersController = {
   },
   
 
-  async getUsers(_,res) {
-    const results = await usersDataMapper.GetUsers();
+  async getUsersById(req,res) {
+  const results = await usersDataMapper.findUserPerId(req.params.id);
     res.status(200).json(results);
   },
 

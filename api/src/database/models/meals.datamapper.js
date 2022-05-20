@@ -17,12 +17,13 @@ const mealsDataMapper = {
     const query = {
      // text: `SELECT * FROM meals_by_user_id($1);`,
      
-      text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
+      text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS recipesOfUser
       FROM "users"
       join meals on meals.users_id=users.id
       join recipes on recipes.id = meals.recipes_id
       where users.id = $1
      GROUP BY users.id,meals.start_date;`,
+
 
     // text: `SELECT users.id,meals.start_date,recipes.id,recipes.name,recipes.photo_link,recipes.meal_time,
     // recipes.max_imc,recipes.type,recipes.steps_desc,recipes.ingredient_desc
