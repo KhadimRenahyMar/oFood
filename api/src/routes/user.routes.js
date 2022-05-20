@@ -1,5 +1,6 @@
 const express = require('express');
 const usersController = require('../controllers/user.controller');
+const debug = require('debug')('User_Routes');
 
 // Gestion des erreurs
 const handleError = require('../middlewares/handleError');
@@ -10,6 +11,10 @@ const validate = require('../validation/validator');
 const { userSchema } = require('../validation/schemas/');
 
 const usersRouter = require('express').Router();
+
+// const auth_local = require('../middlewares/auth_local_storage') 
+// debug('tata',auth_local)
+
 
 usersRouter
   /**
@@ -55,6 +60,9 @@ usersRouter
   .patch('/:id',routerWrapper(usersController.updateProfilByUserId))
 
 
+
+
 usersRouter.use(handleError);
 
 module.exports = usersRouter;
+

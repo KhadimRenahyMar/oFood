@@ -104,6 +104,8 @@ const recipesDataMapper = {
     //A ajouter si le user n'a pas de régime spécifique,
     // alors on peut lui proposer tous les dejeuners ou diners, qui matchent avec son imc
 
+  
+
     
     const query = {
     text: `SELECT
@@ -130,9 +132,6 @@ const recipesDataMapper = {
     return results.rows;
 
 },
-
-
-
 
 
 

@@ -29,6 +29,12 @@ const mealController = {
         recipes_temp.push(0)
       }
 
+
+
+      //A ajouter si le user n'a pas de régime spécifique,
+      // alors on peut lui proposer tous les petits dej, qui match avec son imc
+
+
       const recipes_type_0_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(req.params.userId);
 
       //debug('recipes_type_0_for_user',recipes_type_0_for_user )
@@ -48,6 +54,11 @@ const mealController = {
         }
       }
       
+
+
+      //A ajouter si le user n'a pas de régime spécifique,
+      // alors on peut lui proposer tous les dejeuners ou diners, qui matchent avec son imc
+
 
      // debug('recipes_temp apres recherche petit dej',recipes_temp )
 

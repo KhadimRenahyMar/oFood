@@ -13,7 +13,7 @@ const recipeController = {
 
       async getRecipeInfosByID(req, res) {
         const recipeId = req.params.recipeId;
-        debug('recipeId depuis ctrl recipe',recipeId)
+        debug('recipeId depuis ctrl recip',recipeId)
         const result = await recipesDataMapper.getRecipeById(recipeId);
         res.status(200).json(result);
       },

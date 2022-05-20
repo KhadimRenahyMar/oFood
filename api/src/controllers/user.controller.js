@@ -118,7 +118,7 @@ const usersController = {
     debug('**************** début du DELETE');
     const result_delete_SpecificDiet_Of_userID = await specificsDietDataMapper.deleteSpecificDietByUserID(user.id)
 
-    
+
     debug('fin du DELETE');
     //On reconstruit les liens sur la table pivot
     await specificsDietDataMapper.postNewSpecificDiet_Of_userID(user)
