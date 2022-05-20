@@ -17,6 +17,7 @@ sqitch add 2.add.seeding -n "add.seeding"
 sqitch add 3.add.script_create_meals -n "3.add.script_create_meals"
 sqitch add 4.add.script_create_meals_version_2 -n "4.add.script_create_meals_version_2 "
 sqitch add 5.add.script_create_meals_version_3 -n "5.add.script_create_meals_version_3 "
+sqitch add 6.add.script_recipes_by_intolerances -n "6.add.script_recipes_by_intolerances"
 
 
 # je revert

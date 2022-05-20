@@ -47,21 +47,6 @@ const recipesDataMapper = {
 
   async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(usersId){
 
-      // SELECT
-      // users.id,
-      // recipes.id
-      // FROM public.users
-      // join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
-      // join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
-      // join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
-      // join recipes on recipes.id = specific_diet_has_recipes.recipes_id
-      // where users.id = 1 and users.imc<=recipes.max_imc;
-      
-
-    //A ajouter si le user n'a pas de régime spécifique,
-    // alors on peut lui proposer tous les petits dej, qui match avec son imc
-
-
       const query = {
       text: `SELECT
              users.id,
@@ -90,23 +75,6 @@ const recipesDataMapper = {
 
   async getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(usersId){
 
-    // SELECT
-    // users.id,
-    // recipes.id
-    // FROM public.users
-    // join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
-    // join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
-    // join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
-    // join recipes on recipes.id = specific_diet_has_recipes.recipes_id
-    // where users.id = 1 and users.imc<=recipes.max_imc;
-
-
-    //A ajouter si le user n'a pas de régime spécifique,
-    // alors on peut lui proposer tous les dejeuners ou diners, qui matchent avec son imc
-
-  
-
-    
     const query = {
     text: `SELECT
            users.id,
@@ -151,6 +119,26 @@ const recipesDataMapper = {
     await client.query(query);
     return "The recipe has been saved into database";
   },
+
+  async recipesBy_IntolerancesAnd_Imc(userId,typeRecipes) {
+    const query = {
+      text: `SELECT * FROM recipesBy_IntolerancesAnd_Imc($1,$2);`,
+      values: [userId,typeRecipes],
+    };
+
+    const results = await client.query(query);
+    
+    if(!results.rowCount){
+      throw new APIError ("No recipe saved yet", 404);
+    };
+
+    debug('fct_sql_recipesBy_IntolerancesAnd_Imc',results.rows)
+
+    return results.rows;
+  },
+
+
+
 };
 
 module.exports = recipesDataMapper;
