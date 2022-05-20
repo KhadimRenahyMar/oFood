@@ -1,6 +1,7 @@
 const debug = require('debug')('Meal_Controller');
 const mealsDataMapper = require('../database/models/meals.datamapper');
 const recipesDataMapper = require('../database/models/recipes.datamapper');
+const specificDietDataMapper = require('../database/models/specificsDiet.datamapper');
 
 const APIError = require('../Errors/APIError');
 
@@ -30,12 +31,28 @@ const mealController = {
       }
 
 
-
       //A ajouter si le user n'a pas de régime spécifique,
       // alors on peut lui proposer tous les petits dej, qui match avec son imc
 
+      // const result_user_specific_diet = await specificDietDataMapper.getSpecificDietByUserID(parseInt (req.params.userId,10))
+
+      // if (result_user_specific_diet == false)  {
+
+      // const recipes_type_0_for_user_without_specific_diet = await recipesDataMapper.get21Recipes(0)
+
+      // debug('recipes_type_0_for_user_without_specific_diet',result_user_specrecipes_type_0_for_user_without_specific_dietific_diet)
+
+      // }else{
+
+      // const recipes_type_0_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(req.params.userId);
+      
+      // }
+
+
+
 
       const recipes_type_0_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(req.params.userId);
+
 
       //debug('recipes_type_0_for_user',recipes_type_0_for_user )
 

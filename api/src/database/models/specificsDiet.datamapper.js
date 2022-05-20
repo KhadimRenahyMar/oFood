@@ -23,7 +23,9 @@ const specificDietDataMapper = {
         };
         const results = await client.query(query);
         if(!results.rowCount){
-          throw new APIError ("This specific diet is still not saved in base.", 404);
+          //throw new APIError ("This specific diet is still not saved in base.", 404);
+          return false;
+
         };
         return results.rows[0];
       },

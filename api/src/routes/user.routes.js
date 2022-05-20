@@ -12,7 +12,7 @@ const { userSchema } = require('../validation/schemas/');
 
 const usersRouter = require('express').Router();
 
-// const auth_local = require('../middlewares/auth_local_storage') 
+ const auth_local = require('../middlewares/auth_local_storage') 
 // debug('tata',auth_local)
 
 
@@ -57,7 +57,7 @@ usersRouter
    */
   .get('/', routerWrapper(usersController.getUsers))
 
-  .patch('/:id',routerWrapper(usersController.updateProfilByUserId))
+  .patch('/:id',auth_local,routerWrapper(usersController.updateProfilByUserId))
 
 
 
