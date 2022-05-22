@@ -32,12 +32,12 @@ const mealController = {
 
 
       
-      const recipes_type_0_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(req.params.userId);
-      debug('recipes_type_0_for_user',recipes_type_0_for_user )
+      // const recipes_type_0_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(req.params.userId);
+      // debug('recipes_type_0_for_user',recipes_type_0_for_user )
 
-      await recipesDataMapper.recipesBy_IntolerancesAnd_Imc(req.params.userId,0)
+      const recipes_type_0_for_user=await recipesDataMapper.recipesBy_IntolerancesAnd_Imc(req.params.userId,0)
 
-
+      //debug('recipes_type_0_for_user_recipesBy_IntolerancesAnd_Imc',recipesBy_IntolerancesAnd_Imc )
 
 
       if (!recipes_type_0_for_user == 0) {
@@ -63,7 +63,9 @@ const mealController = {
 
      // debug('recipes_temp apres recherche petit dej',recipes_temp )
 
-      const recipes_type_2_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(req.params.userId);
+      // const recipes_type_2_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(req.params.userId);
+
+      const recipes_type_2_for_user = await recipesDataMapper.recipesBy_IntolerancesAnd_Imc(req.params.userId,2)
 
       //debug('recipes_type_2_for_user',recipes_type_2_for_user )
 

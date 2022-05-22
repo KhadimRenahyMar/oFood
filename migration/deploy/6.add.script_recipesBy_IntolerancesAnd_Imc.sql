@@ -2,8 +2,8 @@
 
 BEGIN;
 
-CREATE OR REPLACE FUNCTION recipesBy_IntolerancesAnd_Imc(usersId INT, typeRecipes INT) RETURNS TABLE( uId INT, recsId INT) AS $$
-   
+CREATE OR REPLACE FUNCTION recipesBy_IntolerancesAnd_Imc(usersId INT, typeRecipes INT) RETURNS TABLE( id INT) AS $$
+
    DECLARE   
    	
 	userImc INT;
@@ -23,9 +23,11 @@ CREATE OR REPLACE FUNCTION recipesBy_IntolerancesAnd_Imc(usersId INT, typeRecipe
 	   
 	END IF;
 
+
+
 	RETURN QUERY
 	SELECT
-	users.id,
+	--users.id,
 	recipes.id
 	FROM public.users
 	join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
@@ -34,6 +36,8 @@ CREATE OR REPLACE FUNCTION recipesBy_IntolerancesAnd_Imc(usersId INT, typeRecipe
 	join recipes on recipes.id = specific_diet_has_recipes.recipes_id
 	where users.id = usersId and users.imc<=recipes.max_imc and recipes.type =typeRecipes
 	ORDER BY RANDOM() LIMIT 21;
+
+
 
 	END
 $$ LANGUAGE plpgsql;
