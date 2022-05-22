@@ -85,7 +85,7 @@ const mealsDataMapper = {
     const results = await client.query(query);
     
     
-    debug('results delete meals:', results);
+    //debug('results delete meals:', results);
 
     // if(!results.rowCount){
     //   return true;

@@ -31,13 +31,9 @@ const mealController = {
       }
 
 
-      
-      // const recipes_type_0_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_0(req.params.userId);
-      // debug('recipes_type_0_for_user',recipes_type_0_for_user )
-
       const recipes_type_0_for_user=await recipesDataMapper.recipesBy_IntolerancesAnd_Imc(req.params.userId,0)
 
-      //debug('recipes_type_0_for_user_recipesBy_IntolerancesAnd_Imc',recipesBy_IntolerancesAnd_Imc )
+      debug('recipes_type_0_for_user_recipesBy_IntolerancesAnd_Imc',recipes_type_0_for_user )
 
 
       if (!recipes_type_0_for_user == 0) {
@@ -55,19 +51,18 @@ const mealController = {
         }
       }
       
-
+      
 
       //A ajouter si le user n'a pas de régime spécifique,
       // alors on peut lui proposer tous les dejeuners ou diners, qui matchent avec son imc
 
+      debug('recipes_temp apres recherche petit dej',recipes_temp )
 
-     // debug('recipes_temp apres recherche petit dej',recipes_temp )
 
-      // const recipes_type_2_for_user = await recipesDataMapper.getRecipes_With_ImcMax_and_Specific_diet_for_user_type_1_2(req.params.userId);
+      const recipes_type_2_for_user = await recipesDataMapper.recipesBy_IntolerancesAnd_Imc(req.params.userId,1)
 
-      const recipes_type_2_for_user = await recipesDataMapper.recipesBy_IntolerancesAnd_Imc(req.params.userId,2)
+      debug('recipes_type_2_for_user',recipes_type_2_for_user )
 
-      //debug('recipes_type_2_for_user',recipes_type_2_for_user )
 
       if (!recipes_type_2_for_user == 0) {
 
@@ -132,7 +127,8 @@ const mealController = {
 
       }
 
-      //debug('recipes_temp apres recherche type 1 ou 2',recipes_temp )
+      debug('recipes_temp apres recherche type 1 ou 2',recipes_temp )
+
       // start_date: req.body.start_date,
       // start_date: req.body.start_date,
       // start_date: '2022-05-10 06:56:30.513834+00',
@@ -143,7 +139,7 @@ const mealController = {
         users_id: parseInt (req.params.userId,10),
         recipes_id: recipes_temp }
 
-      debug('start_date avant passage à la fct:',req.body.start_date )
+     // debug('start_date avant passage à la fct:',req.body.start_date )
 
 
 
