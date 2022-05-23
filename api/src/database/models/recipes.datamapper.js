@@ -3,6 +3,7 @@ const debug = require("debug")("Recipes_DataMapper");
 const APIError = require("../../Errors/APIError");
 
 const recipesDataMapper = {
+
   async getAllRecipes() {
     const query = "SELECT * FROM recipes;";
     const results = await client.query(query);
@@ -13,10 +14,7 @@ const recipesDataMapper = {
   },
 
   async get21Recipes(type) {
-    //methode test 1
-    //const query = `SELECT * FROM recipes ORDER BY RANDOM() LIMIT 21;`
 
-    //methode front
     const query = {
       text: `SELECT * FROM "recipes"
              WHERE type=$1
@@ -45,8 +43,6 @@ const recipesDataMapper = {
     return results.rows[0];
   },
 
-
-
   async postNewRecipe(recipe) {
     const query = {
       text: `INSERT INTO "recipes"("name","photo_link", "meal_time", "max_imc","type", "steps_desc","ingredient_desc") VALUES ($1,$2,$3,$4,$5,$5,$6,$7);`,
@@ -60,6 +56,7 @@ const recipesDataMapper = {
         recipe.ingredient_desc,
       ],
     };
+
     await client.query(query);
     return "The recipe has been saved into database";
   },
@@ -80,7 +77,6 @@ const recipesDataMapper = {
 
     return results.rows;
   },
-
 
 
 };

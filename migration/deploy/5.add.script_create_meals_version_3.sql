@@ -55,4 +55,5 @@ $$ LANGUAGE plpgsql;
 
  COMMIT;
 
+--Pour test sous Pg Admin
 --  SELECT populate_meals_v3('2022-05-10 06:56:30.513834+00',1, ARRAY[65,277,23,74,373,117,71,257,75,0,85,18,0,91,66,0,10,104,0,291,0]);

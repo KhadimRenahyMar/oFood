@@ -51,7 +51,7 @@ ELSE
 	join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
 	join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
 	join recipes on recipes.id = specific_diet_has_recipes.recipes_id
-	where users.id = usersId and users.imc<=recipes.max_imc and (recipes.type = 1 OR recipes.type = 2)
+	where users.id = usersId and users.imc<=recipes.max_imc and (recipes.type = 2 OR recipes.type = 1)
 	ORDER BY RANDOM() LIMIT 21;
 
 
@@ -67,5 +67,6 @@ $$ LANGUAGE plpgsql;
 COMMIT;
 
 
+--Pour test sous Pg Admin
 -- premier parm le user 2eme le type de la recette
 --SELECT recipesBy_IntolerancesAnd_Imc(1,1);

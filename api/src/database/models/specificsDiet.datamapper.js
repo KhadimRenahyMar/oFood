@@ -51,6 +51,7 @@ const specificDietDataMapper = {
 
 
       async deleteSpecificDietByUserID(userId){
+
         // debug(`************ ici on entre dans deleteSpecificDietByUserID`);
         
         const query = { 
@@ -62,7 +63,7 @@ const specificDietDataMapper = {
 
         // if(!results.rowCount){
         //   return true;
-        //   //   throw new APIError ("User have not specific diet saved in base.", 404)
+        //   throw new APIError ("User have not specific diet saved in base.", 404)
         // };
         
         return true;
@@ -81,11 +82,7 @@ const specificDietDataMapper = {
 
       async postNewSpecificDiet_Of_userID(user){
 
-        //En attendant de coder un fct, 
-        //qui s'occupe du traitement du régime spé  avec sa création si il n'existe pas,
-        // puis remplissage de la table pivot
         let i;
-
 
        for (const iterator of user.intolerances) {
 

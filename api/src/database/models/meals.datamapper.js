@@ -7,31 +7,14 @@ const mealsDataMapper = {
 
   async getAllMealsByUserID(userId) {
 
-//  SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
-//  FROM "users"
-//  join meals on meals.users_id=users.id
-//  join recipes on recipes.id = meals.recipes_id
-//  where users.id = 1
-//  GROUP BY users.id,meals.start_date ;
-   
     const query = {
-     // text: `SELECT * FROM meals_by_user_id($1);`,
-     
+   
       text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
       FROM "users"
       join meals on meals.users_id=users.id
       join recipes on recipes.id = meals.recipes_id
       where users.id = $1
      GROUP BY users.id,meals.start_date;`,
-
-    // text: `SELECT users.id,meals.start_date,recipes.id,recipes.name,recipes.photo_link,recipes.meal_time,
-    // recipes.max_imc,recipes.type,recipes.steps_desc,recipes.ingredient_desc
-    // FROM public.users
-    //  join meals on meals.users_id=users.id
-    //  join recipes on recipes.id = meals.recipes_id
-    //  where users.id = $1;`,
-     
-     // text: `SELECT * from users join meals on meals.users_id=users.id join recipes on recipes.id = meals.recipes_id WHERE users.id=$1;`
       values: [userId],
     };
 
@@ -45,10 +28,8 @@ const mealsDataMapper = {
     }
     return results.rows;
 
-
   },
 
-  
   async postNewMeals(meals) {
 
     //pour le test fct version 2
@@ -57,7 +38,7 @@ const mealsDataMapper = {
     //   values: [meals],
     // };
 
-     //pour le test fct version 3
+   
     const query = {
       text: `SELECT * FROM populate_meals_v3($1,$2,$3);`,
       values: [meals.start_date,meals.users_id,meals.recipes_id],

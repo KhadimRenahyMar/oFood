@@ -30,11 +30,6 @@ ALTER TABLE IF EXISTS public.users_choose_specific_diet
     ALTER COLUMN id RESTART SET START 2;
 
 
-
-
-
-
-
 -- Finalement cette fct ne sert pas (laissé pour exemple de syntaxe en language sql  
 
 -- CREATE OR REPLACE FUNCTION populate_meals(meals json) RETURNS meals AS $$
@@ -50,7 +45,6 @@ ALTER TABLE IF EXISTS public.users_choose_specific_diet
 -- ) RETURNING *;
 
 -- $$ LANGUAGE sql STRICT;
-
 
 
  COMMIT;

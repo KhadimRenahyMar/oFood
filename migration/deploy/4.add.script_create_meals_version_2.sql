@@ -2,6 +2,8 @@
 
 BEGIN;
 
+--Fonction plus utilisée mais laissée ds le plan de déploiement pour exemple
+-- (passage d'un objet Json en paramètre, puis retour d'une requête)
 
 CREATE OR REPLACE FUNCTION populate_meals_v2(meals_v2 json) RETURNS TABLE( id INT,start_date_meals timestamptz, recipesOfUser json) AS $$
 
@@ -58,6 +60,7 @@ $$ LANGUAGE plpgsql;
  COMMIT;
 
 
+--Pour test sous Pg Admin
 
 -- SELECT populate_meals_v2('{
 --   "start_date": "2022-05-10 06:56:30.513834+00",
