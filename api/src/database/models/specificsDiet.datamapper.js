@@ -99,17 +99,14 @@ const specificDietDataMapper = {
                 i=3;
                 break;
 
-              case 'vegetarien':
+              case 'vegetalien':
                 i=4;
                 break;
 
-              case 'vegetalien':
+              case 'sans porc':
                 i=5;
                 break;
 
-              case 'sans porc':
-                i=6;
-                break;
 
             }
 
