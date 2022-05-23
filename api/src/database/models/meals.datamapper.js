@@ -9,7 +9,7 @@ const mealsDataMapper = {
 
     const query = {
    
-      text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS user_recipes
+      text:` SELECT users.id,meals.start_date, json_agg(recipes.*) AS recipesOfUser
       FROM "users"
       join meals on meals.users_id=users.id
       join recipes on recipes.id = meals.recipes_id
