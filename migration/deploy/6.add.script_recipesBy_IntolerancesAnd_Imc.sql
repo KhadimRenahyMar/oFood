@@ -28,30 +28,64 @@ CREATE OR REPLACE FUNCTION recipesBy_IntolerancesAnd_Imc(usersId INT, typeRecipe
 
 IF(typeRecipes = 0) THEN
 
+	-- RETURN QUERY
+	-- SELECT
+	-- --users.id,
+	-- recipes.id
+	-- FROM public.users
+	-- join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
+	-- join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
+	-- join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
+	-- join recipes on recipes.id = specific_diet_has_recipes.recipes_id
+	-- where users.id = usersId and users.imc<=recipes.max_imc and recipes.type = typeRecipes
+	-- ORDER BY RANDOM() LIMIT 21;
+
 	RETURN QUERY
-	SELECT
+	SELECT * FROM (SELECT
 	--users.id,
-	recipes.id
+	DISTINCT recipes.id
 	FROM public.users
 	join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
 	join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
 	join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
 	join recipes on recipes.id = specific_diet_has_recipes.recipes_id
 	where users.id = usersId and users.imc<=recipes.max_imc and recipes.type = typeRecipes
+	GROUP BY recipes.id) T
 	ORDER BY RANDOM() LIMIT 21;
 
-ELSE 
+
+END IF;
+
+
+-- IF(typeRecipes = 1) THEN
+
+-- 	RETURN QUERY
+-- 	SELECT
+-- 	--users.id,
+-- 	DISTINCT recipes.id
+-- 	FROM public.users
+-- 	join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
+-- 	join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
+-- 	join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
+-- 	join recipes on recipes.id = specific_diet_has_recipes.recipes_id
+-- 	where users.id = usersId and users.imc<=recipes.max_imc and (recipes.type = 2 OR recipes.type = 1) 
+-- 	GROUP BY recipes.id LIMIT 21;
+
+-- END IF;
+
+IF(typeRecipes = 1) THEN
 
 	RETURN QUERY
-	SELECT
+	SELECT * FROM (SELECT
 	--users.id,
-	recipes.id
+	DISTINCT recipes.id
 	FROM public.users
 	join users_choose_specific_diet on users_choose_specific_diet.users_id=users.id
 	join specific_diet on specific_diet.id=users_choose_specific_diet.specific_diet_id
 	join specific_diet_has_recipes on specific_diet_has_recipes.specific_diet_id=specific_diet.id
 	join recipes on recipes.id = specific_diet_has_recipes.recipes_id
-	where users.id = usersId and users.imc<=recipes.max_imc and (recipes.type = 2 OR recipes.type = 1)
+	where users.id = usersId and users.imc<=recipes.max_imc and (recipes.type = 2 OR recipes.type = 1) 
+	GROUP BY recipes.id) T
 	ORDER BY RANDOM() LIMIT 21;
 
 

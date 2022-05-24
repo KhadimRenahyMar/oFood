@@ -61,7 +61,7 @@ const mealController = {
 
       const recipes_type_2_for_user = await recipesDataMapper.recipesBy_IntolerancesAnd_Imc(req.params.userId,1)
 
-      debug('recipes_type_2_for_user',recipes_type_2_for_user )
+      debug('recipes_type_1_ou_2_for_user',recipes_type_2_for_user )
 
 
       if (!recipes_type_2_for_user == 0) {
@@ -142,7 +142,6 @@ const mealController = {
      // debug('start_date avant passage à la fct:',req.body.start_date )
 
 
-
       const result_delete_Meals = await mealsDataMapper.deleteMealsByUserID(parseInt (req.params.userId,10))
 
       const result = await mealsDataMapper.postNewMeals(meals);
@@ -151,13 +150,11 @@ const mealController = {
       //const result_getAllMealsByUserID = await mealsDataMapper.getAllMealsByUserID(parseInt (req.params.userId,10))
 
       
-
       // debug('result retour des meals',result )
       // debug('resultTest:', result_getAllMealsByUserID);
 
 
       res.status(201).json(result);
-    
     
       
   },
