@@ -21,7 +21,7 @@ const mealsDataMapper = {
 
     const results = await client.query(query);
 
-    debug('meals getAllMealsByUserID ',results.rows )
+    //debug('meals getAllMealsByUserID ',results.rows )
 
     if (!results.rowCount) {
       throw new APIError("This user have not meals saved in base.", 404);
@@ -50,7 +50,7 @@ const mealsDataMapper = {
       throw new APIError ("No recipe saved yet", 404);
     };
 
-    debug('fct_sql',results.rows)
+   // debug('fct_sql',results.rows)
 
     return results.rows;
 

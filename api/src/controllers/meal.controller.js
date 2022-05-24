@@ -127,7 +127,7 @@ const mealController = {
 
       }
 
-      debug('recipes_temp apres recherche type 1 ou 2',recipes_temp )
+      debug('recipes_temp transfere a la fct creation meals',recipes_temp )
 
       // start_date: req.body.start_date,
       // start_date: req.body.start_date,
@@ -152,11 +152,12 @@ const mealController = {
 
       
 
-      debug('result retour des meals',result )
-      //debug('resultTest:', result_getAllMealsByUserID);
+      // debug('result retour des meals',result )
+      // debug('resultTest:', result_getAllMealsByUserID);
 
 
       res.status(201).json(result);
+    
     
       
   },
