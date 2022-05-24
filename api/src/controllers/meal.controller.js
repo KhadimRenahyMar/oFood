@@ -146,7 +146,9 @@ const mealController = {
 
       const result = await mealsDataMapper.postNewMeals(meals);
 
-      debug('result retour des meals',result)
+
+     debug('result retour des meals',result)
+
     
       const tab_a_retourner = [...result];
 
@@ -168,7 +170,7 @@ const mealController = {
                //let titi= iterator[key].indexOf(recette)
                //debug('titi',titi)
                
-               tab_a_retourner[tab_a_retourner.indexOf(iterator)].recipesofuser[iterator[key].indexOf(recette)].tag=result_SpecificDietByRecipesID
+               tab_a_retourner[tab_a_retourner.indexOf(iterator)].recipesofuser[iterator[key].indexOf(recette)].tag_specificDiet=result_SpecificDietByRecipesID
               
               }
             
@@ -179,7 +181,7 @@ const mealController = {
         }
         
 
-      debug('traitement', tab_a_retourner)
+     debug('traitement', tab_a_retourner)
    
 
       res.status(201).json(tab_a_retourner);

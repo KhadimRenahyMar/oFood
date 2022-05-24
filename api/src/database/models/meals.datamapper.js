@@ -50,7 +50,7 @@ const mealsDataMapper = {
       throw new APIError ("No recipe saved yet", 404);
     };
 
-    debug('fct_sql',results.rows)
+    //debug('fct_sql',results.rows)
 
     return results.rows;
 
