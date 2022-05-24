@@ -49,6 +49,25 @@ const specificDietDataMapper = {
         return results;
       },
 
+      async getSpecificDietByRecipesID(recipeId){
+
+        //requête pour récupérer les régime spécifiques associés à une recette
+
+        const query = { 
+          text: `SELECT specific_diet.name
+          FROM "specific_diet"
+          join "specific_diet_has_recipes" on specific_diet_has_recipes.specific_diet_id=specific_diet.id
+          join "recipes" on recipes.id=specific_diet_has_recipes.recipes_id
+          where recipes.id=$1;`,
+          values: [recipeId],
+        };
+      
+        const results = await client.query(query);
+        if(!results.rowCount){
+          return 0
+        };
+        return results.rows;
+      },
 
       async deleteSpecificDietByUserID(userId){
 

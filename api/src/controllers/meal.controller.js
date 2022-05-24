@@ -142,21 +142,47 @@ const mealController = {
      // debug('start_date avant passage à la fct:',req.body.start_date )
 
 
-
       const result_delete_Meals = await mealsDataMapper.deleteMealsByUserID(parseInt (req.params.userId,10))
 
       const result = await mealsDataMapper.postNewMeals(meals);
 
-      //fct pacth
-      //const result_getAllMealsByUserID = await mealsDataMapper.getAllMealsByUserID(parseInt (req.params.userId,10))
+      debug('result retour des meals',result)
+    
+      const tab_a_retourner = [...result];
 
-      
+      for (const iterator of tab_a_retourner) {
 
-      debug('result retour des meals',result )
-      //debug('resultTest:', result_getAllMealsByUserID);
+ 
+        for (const key in iterator) {
+        
+            if (key == 'recipesofuser') {
 
+              //iterator[key] --> le tab de recettes du jour) {
 
-      res.status(201).json(result);
+              for (const recette of iterator[key]) {
+
+                const result_SpecificDietByRecipesID= await specificDietDataMapper.getSpecificDietByRecipesID(recette.id)
+               // debug('régime spe da la recette',result_SpecificDietByRecipesID)
+               //recette.tag=result_SpecificDietByRecipesID
+               //let titi= tab_recette_recuperees.indexOf(recette)
+               //let titi= iterator[key].indexOf(recette)
+               //debug('titi',titi)
+               
+               tab_a_retourner[tab_a_retourner.indexOf(iterator)].recipesofuser[iterator[key].indexOf(recette)].tag=result_SpecificDietByRecipesID
+              
+              }
+            
+            }
+            
+          }
+          
+        }
+        
+
+      debug('traitement', tab_a_retourner)
+   
+
+      res.status(201).json(tab_a_retourner);
     
       
   },
