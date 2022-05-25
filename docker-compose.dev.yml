@@ -77,23 +77,6 @@ services:
       - postgresql
 
 
-#  # pour deploiement temporaire demo Apo oclock
-#   reverse-proxy:
-#     build:
-#       context: ./reverse-proxy
-#       dockerfile: Dockerfile.dev
-#     ports:
-#       - 80:80
-#       - 443:443
-#     volumes: 
-#       - type: bind
-#         source: /etc/letsencrypt
-#         target: /etc/letsencrypt
-#     depends_on:
-#       - postgresql
-
-
-
 
 volumes:
 # A voir avec l'équipe comment elle veut gérer la persistance ?
