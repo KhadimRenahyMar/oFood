@@ -22,10 +22,12 @@ export default function Recipe() {
         
         <img src={recipe.photo_link} className="recipe__img"></img>
         <em className="recipe__time">{recipe.meal_time} minutes</em> {/* //test */}
+        <div>
+          <h2 className="recipe__title">{recipe.name}</h2> {/* //test */}
 
-        <h2 className="recipe__title">{recipe.name}</h2> {/* //test */}
-
-        <p className="recipe__desc">Encore une bonne recette facile à préparer ? Merci oFood !</p> {/* //test */}
+          <p className="recipe__desc">Encore une bonne recette facile à préparer ? Merci oFood !</p> {/* //test */}
+        </div>
+        
 
       </div>
 

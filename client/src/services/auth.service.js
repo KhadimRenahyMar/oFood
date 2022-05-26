@@ -42,10 +42,9 @@ const logout = () => {
 const getCurrentUser = () => {
   console.log("A8")
   const user = JSON.parse(localStorage.getItem('user'));
-  // console.log('ID', user.id);
+  console.log('ID', user.id);
   const userId = user.id;
   console.log(userId)
-  // 'http://localhost:3001/api/users/9'
   return axios.get(`${API_URL}${userId}`).then((response) => response.data);
   // return JSON.parse(localStorage.getItem('user'))
 };

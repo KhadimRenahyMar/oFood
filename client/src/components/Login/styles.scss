@@ -26,6 +26,11 @@
     font-weight: 500;
     margin-bottom: 70px;
     margin-top: 20px;
+    @media (max-width: $desktop_width) { 
+
+      margin-bottom: 20px;
+  
+  }
   }
 
   &__submit {
@@ -116,4 +121,27 @@
     margin-bottom: 12rem; // correction affichage pour footer en bas de page; remplace : 150px
 
 }
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  @media (max-width: $desktop_width) { 
+
+    margin-bottom: 20px;
+
+}
+}
+
+.login-danger {
+
+  text-align: center;
+}
+
+.invalid-feedback {
+
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 400;
+  color: map-get(map-get($themes, "light"), "base2");
 }

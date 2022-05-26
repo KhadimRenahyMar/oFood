@@ -13,8 +13,8 @@ import sanitizeHtml from 'sanitize-html';
 const required = (value) => {
   if (!value) {
     return (
-      <div className="invalid-feedback d-block">
-        This field is required!
+      <div className="invalid-feedback">
+        Ce champ est requis !
       </div>
     );
   }
@@ -74,6 +74,13 @@ export default function Login({ login, addNewUserFunction }) {
     <div className="login">
       <Form className="login__form" action="" method="post" onSubmit={handleLogin}>
         <h1 className="login__title">Bienvenue !</h1>
+        {message && (
+        <div className="form-group">
+          <div className="alert alert-danger login-danger" role="alert">
+            {message}
+          </div>
+        </div>
+        )}
         <div className="login__inputBx">
           <label htmlFor="email" className="login__email">Email</label>
           <Input name="email" id="email" type="text" className="login__input" value={email} onChange={onChangeUseremail} validations={[required]} />
@@ -83,14 +90,6 @@ export default function Login({ login, addNewUserFunction }) {
           <Input name="password" id="password" type="password" className="login__input" value={password} onChange={onChangePassword} validations={[required]} />
         </div>
         <Input className="login__submit" type="submit" value="Connexion" />
-
-        {message && (
-        <div className="form-group">
-          <div className="alert alert-danger" role="alert">
-            {message}
-          </div>
-        </div>
-        )}
         <CheckButton style={{ display: 'none' }} ref={checkBtn} />
       </Form>
     </div>
