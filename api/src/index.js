@@ -9,16 +9,14 @@ const app = express();
 
 
 // Setting CORS
-
-const cors = require('cors');
-const corsOptions = {
-  Credential:true,
-  //origin: 'http://localhost:3000',
-  origin: '*',
-  optionSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-app.use(cors(corsOptions));
+// const cors = require('cors');
+// const corsOptions = {
+//   Credential:true,
+//   //origin: 'http://localhost:3000',
+//   origin: '*',
+//   optionSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+// app.use(cors(corsOptions));
 
 
 

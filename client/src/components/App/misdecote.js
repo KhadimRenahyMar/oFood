@@ -11,7 +11,7 @@ useEffect(async () => {
 }, [userMeals]);
 
 const getUserMeals = async () => {
-  const mealsList = await axios.post('http://localhost:3001/api/meals/addmeals');{
+  const mealsList = await axios.post('http://localhost/api/meals/addmeals');{
     
   }
   
@@ -39,7 +39,7 @@ const logMe = async (e) => {
   console.log(obj);
   const response = await axios({
     method: 'post',
-    url: 'http://localhost:3001/api/users/login',
+    url: 'http://localhost/api/users/login',
     data: obj,
   });
   const result = await response.data;

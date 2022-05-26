@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { removeCookie } from 'react-cookie';
 
-const API_URL = 'http://localhost:3001/api/users/';
+const API_URL = 'http://localhost/api/users/';
 
 // The service uses Axios for HTTP requests and Local Storage for user information & JWT.
 // It provides following important functions:

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AuthService from '../../services/auth.service';
 
-const API_URL = 'http://localhost:3001/api/meals/';
+const API_URL = 'http://localhost/api/meals/';
 
 // The service uses Axios for HTTP requests and Local Storage for user information & JWT.
 // It provides following important functions:
@@ -14,7 +14,7 @@ const API_URL = 'http://localhost:3001/api/meals/';
 
   const fetchUserMeals = async () => {
     try {
-      const result = await axios.get(`http://localhost:3001/api/meals/${AuthService.getCurrentUser().id}/postnewmeals`, {
+      const result = await axios.get(`http://localhost/api/meals/${AuthService.getCurrentUser().id}/postnewmeals`, {
         headers: {
           // authorization: `Bearer ${currentUser.token}`,
           authorization: `Bearer ${AuthService.getCurrentUser().token}`,

@@ -36,7 +36,7 @@ export default function Profil({
     // });
 
     const result = await axios({
-      url: `http://localhost:3001/api/users/${currentUser.id}`,
+      url: `http://localhost/api/users/${currentUser.id}`,
       method: 'PATCH',
       data: obj
     });

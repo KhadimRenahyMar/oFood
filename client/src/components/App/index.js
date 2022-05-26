@@ -65,7 +65,7 @@ function App() {
       console.log('current user from auth', AuthService.getCurrentUser());
 
       console.log('TOKEN ', AuthService.getCurrentUser().token);
-      const result = await axios.post(`http://localhost:3001/api/meals/${currentUser.id}/postnewmeals`, {
+      const result = await axios.post(`http://localhost/api/meals/${currentUser.id}/postnewmeals`, {
         headers: {
           // authorization: `Bearer ${currentUser.token}`,
           authorization: `Bearer ${AuthService.getCurrentUser().token}`,
@@ -92,7 +92,7 @@ function App() {
   const fetchUserMeals = async (userID) => {
     // console.log(userID);
     try {
-      const result = await axios.get(`http://localhost:3001/api/meals/${userID}`);
+      const result = await axios.get(`http://localhost/api/meals/${userID}`);
       // console.log('fetchUserMeals result', result);
 
       const sortedMeals = [];
