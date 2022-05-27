@@ -94,6 +94,14 @@ const usersController = {
     const results = await usersDataMapper.GetUsers();
     res.status(200).json(results);
   },
+  
+  // Khadim
+  async getUserByID(req, res){
+    const _id = req.params.id;
+    const results = await usersDataMapper.getUserByID(_id);
+    console.log(results);
+    res.status(200).json(results);
+  },
 
   async updateProfilByUserId(req,res){
     const _id = req.params.id

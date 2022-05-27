@@ -5,6 +5,7 @@
   display: flex;
   margin: 0 auto;
   width: 100%;
+  z-index: 2;
   @media screen and (max-width: $desktop_width) {
     width: 90%;
   }
@@ -23,6 +24,7 @@
   transition: 0.3s ease-in-out;
   &:hover{
     background-color: map-get(map-get($themes, "light"), "base8");
+    color: map-get(map-get($themes, "light"), "base0");
     
   }
   @media screen and (max-width: $desktop_width) {
@@ -95,7 +97,7 @@
 }
 
 .ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
-  border-color: map-get(map-get($themes, "light"), "base10");
+  border-color: #8d2133;
   position: absolute;
   display: block;
   border-style: solid;

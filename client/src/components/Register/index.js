@@ -13,7 +13,7 @@ const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
-        Ce champs est obligatoire.
+        Ce champ est obligatoire.
       </div>
     );
   }
@@ -109,7 +109,7 @@ export default function Register() {
                 />
 
           <div className="form__checkbox">
-            <input type="checkbox" required="required" name="checkbox" />
+            <input type="checkbox" required="required" name="checkbox" className="regular-checkbox" />
             <h2 className="form__cgu">J'ai lu et j'accepte les conditions générales d'utilisation</h2>
           </div>
           <h2 className="form__alreadyRegister">Déjà inscris ? <NavLink to="/users/login"><span className="form__log">Connecte-toi</span></NavLink></h2>
@@ -129,9 +129,6 @@ export default function Register() {
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
       </Form>
-
-
-
 
     </div>
   );
