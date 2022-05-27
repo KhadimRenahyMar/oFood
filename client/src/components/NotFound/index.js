@@ -3,7 +3,7 @@ import Logo from './Fichier 7.svg';
 
 export default function NotFound() {
   return (
-    <div className="notFound">
+      <div className="notFound">
       <div className="box">4</div>
       <div className="box">
         <img className="logo" src={Logo} alt="" />
@@ -15,5 +15,6 @@ export default function NotFound() {
         </div>
       </div>
     </div>
+
   );
 }

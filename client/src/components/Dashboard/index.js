@@ -43,7 +43,7 @@ export default function Dashboard({
                   <div className="card__container">
                     {
                     day.recipesofuser.map((recipe) => (
-                      <div className="Card" key={recipe.id}>
+                      <div className="Card animated animatedFadeInUp fadeInUp" key={recipe.id}>
                         <Link to={`/recipes/${recipe.id}`} state={{ recipe }}>
                         <div className="container__picture">
                           <img className="picture__card" src={recipe?.photo_link.charAt(0) === "h" ? recipe.photo_link : "https://img.cuisineaz.com/660x660/2016/06/27/i93803-porridge-aux-flocons-d-avoine.webp"} alt="avatar" />

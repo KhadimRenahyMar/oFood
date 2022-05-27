@@ -19,6 +19,7 @@ import Contact from '../Contact';
 import Cgu from '../Cgu';
 import NotFound from '../NotFound';
 import Faq from '../Faq';
+import Team from '../Team';
 
 // == Composant
 function App() {
@@ -207,6 +208,14 @@ function App() {
           path="/faq"
           element={(
             <Faq />
+          )}
+        />
+
+        <Route
+          key={Team}
+          path="/team"
+          element={(
+            <Team />
           )}
         />
         <Route path="*" element={<NotFound />} />

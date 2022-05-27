@@ -21,16 +21,11 @@
     }
 
     &__title{
-        position: absolute;
-        bottom: 4rem;
-        left: 2rem;
         font-size: 1.8rem;
+        margin-bottom: 5px;
     }
 
     &__desc{
-        position: absolute;
-        bottom: 2rem;
-        left: 2rem;
         font-size: 1rem;
         font-style: italic;
     }
@@ -96,4 +91,14 @@
         margin: 1rem 0;
         list-style: inside;
     }
+}
+
+.bandeau {
+
+  background-color: #00000061;
+  height: 107px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 30px;
 }

@@ -29,6 +29,20 @@ const usersDataMapper = {
   
   },
   
+  // Khadim
+  async getUserByID(id) {
+    const query = {
+      text: `SELECT * FROM "users" WHERE id = $1`,
+      values: [id],
+    };
+    const results = await client.query(query);
+    debug('user by ID : ', results);
+    if(!results.rowCount){
+      throw new APIError ("This account doesn't exist.", 404);
+    };
+    return results.rows[0];
+  },
+
   async findUserPerEmail(user) {
     const query = {
       text : `SELECT * FROM "users"

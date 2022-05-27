@@ -56,7 +56,7 @@ usersRouter
    * @returns {APIError} 404 - fail response
    */
   .get('/', routerWrapper(usersController.getUsers))
-
+  .get('/:id', auth_local, routerWrapper(usersController.getUserByID)) // Khadim
   .patch('/:id',auth_local,routerWrapper(usersController.updateProfilByUserId))
 
 
