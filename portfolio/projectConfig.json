@@ -1,0 +1,73 @@
+{
+  "url": "",
+  "coverURL": "",
+  "size": "L",
+  "techs": [
+    "HTML",
+    "CSS",
+    "SCSS",
+    "Javascript",
+    "React",
+    "nodeJS",
+    "SQL",
+    "postgreSQL"
+    "Docker"
+  ],
+  "packages": [
+    {
+      "name": "momentJS",
+      "tech": "Javascript"
+    },
+    {
+      "name": "sanitize-html",
+      "tech": "Javascript"
+    },
+    {
+      "name": "JWT",
+      "tech": "nodeJS"
+    },
+    {
+      "name": "react-router-dom",
+      "tech": "React"
+    },
+    {
+      "name": "react-dom",
+      "tech": "React"
+    },
+    {
+      "name": "babel",
+      "tech": "React"
+    },
+    {
+      "name": "webpack",
+      "tech": "React"
+    },
+    {
+      "name": "sqitch",
+      "tech": "Docker"
+    },
+    {
+      "name": "axios",
+      "tech": "React"
+    },
+    {
+      "name": "react-cookie",
+      "tech": "React"
+    },
+    {
+      "name": "react-validation",
+      "tech": "React"
+    },
+  ],
+  "designPatterns":[
+    "localStorage",
+    "dataMapper",
+    "MVC",
+    "Authentication"
+   ],
+  "components":[
+    "Formulaires",
+    "Buttons",
+    "Login"
+  ]
+}
